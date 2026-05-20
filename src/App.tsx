@@ -1,7 +1,8 @@
 import Preloader from "./components/Preloader";
 import CustomCursor from "./components/CustomCursor";
 import TimeDisplay from "./components/TimeDisplay";
-import Hero from "./components/Hero";
+import SplitHero from "./components/SplitHero";
+import ScrollProgress from "./components/ScrollProgress";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
@@ -16,14 +17,15 @@ function App() {
   return (
     <div className="bg-bg text-fg min-h-screen">
       <Preloader />
+      <SplitHero />
       <CustomCursor />
+      <ScrollProgress />
 
       <div className="fixed top-4 right-4 z-50">
         <TimeDisplay />
       </div>
 
       <div className="wrapperFirst">
-        <Hero />
         <About />
         <Projects />
       </div>

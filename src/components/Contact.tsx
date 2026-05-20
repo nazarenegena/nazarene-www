@@ -1,115 +1,230 @@
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import MarqueeCard from './MarqueeCard'
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import CurlyLine from "./CurlyLine";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const contacts = [
   {
-    number: '01',
-    title: 'Email',
-    subtitle: 'nazarenewanyaga24@gmail.com',
-    href: 'mailto:nazarenewanyaga24@gmail.com',
-    bgColor: 'bg-accent/20',
-    textColor: 'text-fg',
-    marqueeText: 'Email',
-    marqueeSpeed: '3s',
+    label: "Email",
+    value: "nazarenewanyaga24@gmail.com",
+    href: "mailto:nazarenewanyaga24@gmail.com",
+    icon: "✉",
   },
   {
-    number: '02',
-    title: 'GitHub',
-    subtitle: '@nazarenegena',
-    href: 'https://github.com/nazarenegena',
-    bgColor: 'bg-reveal',
-    textColor: 'text-fg',
-    marqueeText: 'GitHub',
-    marqueeSpeed: '4s',
+    label: "GitHub",
+    value: "@nazarenegena",
+    href: "https://github.com/nazarenegena",
+    icon: "⌘",
   },
   {
-    number: '03',
-    title: 'LinkedIn',
-    subtitle: 'linkedin.com/in/nazarene-wanyaga',
-    href: 'https://linkedin.com/in/nazarene-wanyaga',
-    bgColor: 'bg-fg/5',
-    textColor: 'text-fg',
-    marqueeText: 'LinkedIn',
-    marqueeSpeed: '5s',
+    label: "LinkedIn",
+    value: "nazarene-wanyaga",
+    href: "https://linkedin.com/in/nazarene-wanyaga",
+    icon: "◈",
   },
   {
-    number: '04',
-    title: 'Phone',
-    subtitle: '+254 705 434 749',
-    href: 'tel:+254705434749',
-    bgColor: 'bg-accent/10',
-    textColor: 'text-fg',
-    marqueeText: 'Call',
-    marqueeSpeed: '3.5s',
+    label: "Phone",
+    value: "+254 705 434 749",
+    href: "tel:+254705434749",
+    icon: "✆",
   },
-]
+];
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
+    const section = sectionRef.current;
+    if (!section) return;
 
-    const cards = section.querySelectorAll('.js-card')
+    const triggers: ScrollTrigger[] = [];
 
-    gsap.from(cards, {
-      y: 60,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    })
+    const badge = section.querySelector(".contact-badge");
+    const headline = section.querySelector(".contact-headline");
+    const body = section.querySelector(".about-body");
+    const emailLink = section.querySelector(".contact-email-link");
+    const cards = section.querySelectorAll(".contact-card");
+
+    if (badge) {
+      const t = gsap.fromTo(
+        badge,
+        { y: -8, opacity: 0.3 },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            end: "top 68%",
+            scrub: 1,
+          },
+        }
+      );
+      if (t.scrollTrigger) triggers.push(t.scrollTrigger);
+    }
+
+    if (headline) {
+      const t = gsap.fromTo(
+        headline,
+        { y: 12, opacity: 0.3 },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 76%",
+            end: "top 60%",
+            scrub: 1,
+          },
+        }
+      );
+      if (t.scrollTrigger) triggers.push(t.scrollTrigger);
+    }
+
+    if (body) {
+      const t = gsap.fromTo(
+        body,
+        { y: 10, opacity: 0.3 },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 70%",
+            end: "top 55%",
+            scrub: 1,
+          },
+        }
+      );
+      if (t.scrollTrigger) triggers.push(t.scrollTrigger);
+    }
+
+    if (emailLink) {
+      const t = gsap.fromTo(
+        emailLink,
+        { y: 6, opacity: 0.3 },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 65%",
+            end: "top 52%",
+            scrub: 1,
+          },
+        }
+      );
+      if (t.scrollTrigger) triggers.push(t.scrollTrigger);
+    }
+
+    if (cards.length) {
+      const t = gsap.fromTo(
+        cards,
+        { y: 10, opacity: 0.3, rotate: -0.5 },
+        {
+          y: 0,
+          opacity: 1,
+          rotate: 0,
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: cards[0].parentElement,
+            start: "top 85%",
+            end: "top 50%",
+            scrub: 1,
+          },
+        }
+      );
+      if (t.scrollTrigger) triggers.push(t.scrollTrigger);
+    }
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill())
-    }
-  }, [])
+      triggers.forEach((st) => st.kill());
+    };
+  }, []);
 
   return (
-    <section id="contact" ref={sectionRef} className="px-6 sm:px-12 py-20 sm:py-32">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="contact-section bg-dot-grid bg-bg px-6 sm:px-12 py-24 sm:py-32"
+    >
       <div className="max-w-[1400px] mx-auto">
-        <div className="titleLines mb-12 sm:mb-16">
-          <div className="flex items-center gap-6 overflow-hidden">
-            <h2 className="font-display text-[clamp(32px,5vw,64px)] font-bold tracking-[-0.03em] text-fg flex-shrink-0">
-              Let's build
-            </h2>
-            <span className="flex-1 h-px bg-border" />
+        <div className="about-frame">
+          <div className="flex items-center gap-4 mb-10">
+            <span className="about-label font-mono text-[10px] tracking-[0.12em] text-accent uppercase shrink-0">
+              ✦ 03 //contact
+            </span>
+            <span className="flex-1 about-divider" />
           </div>
-          <div className="flex items-center gap-6 overflow-hidden mt-1">
-            <span className="flex-1 h-px bg-border" />
-            <h2 className="font-display text-[clamp(32px,5vw,64px)] font-bold tracking-[-0.03em] italic text-accent flex-shrink-0">
-              something good.
-            </h2>
-          </div>
-          <div className="h-px bg-border w-full mt-2 scale-x-0 origin-left title-line" />
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {contacts.map((contact) => (
-            <div key={contact.number} className="h-[220px] sm:h-[260px]">
-              <MarqueeCard
-                number={contact.number}
-                title={contact.title}
-                subtitle={contact.subtitle}
-                href={contact.href}
-                bgColor={contact.bgColor}
-                textColor={contact.textColor}
-                marqueeText={contact.marqueeText}
-                marqueeSpeed={contact.marqueeSpeed}
-                className="h-full"
-              />
+          <div className="flex gap-[5%] items-center">
+            <div className="contact-left w-[40%] shrink-0">
+              <div className="contact-badge">
+                <span className="contact-badge-dot" />
+                Available for work
+              </div>
+
+              <div className="relative">
+                <svg
+                  className="absolute left-0 top-0 h-full w-[14px]"
+                  viewBox="0 0 14 100"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8 0 H3 V100 H8"
+                    stroke="#c97d4e"
+                    strokeWidth="1.5"
+                    opacity="0.35"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                </svg>
+                <h2 className="contact-headline about-headline text-[clamp(36px,5vw,56px)] leading-[0.95] mb-4 pl-[18px]">
+                  Let's work<br />together
+                </h2>
+              </div>
+
+              <p className="about-body text-[16px] text-fg/70 leading-[1.7] max-w-[400px] mb-6">
+                Have a project in mind? I'd love to hear from you.
+                Reach out through any of the channels below.
+              </p>
+
+              <a
+                href="mailto:nazarenewanyaga24@gmail.com"
+                className="contact-email-link"
+              >
+                or email me directly →
+              </a>
+
+              <CurlyLine className="curly-line" />
             </div>
-          ))}
+
+            <div className="w-[55%] shrink-0">
+              <div className="grid grid-cols-2 gap-[14px]">
+                {contacts.map((contact) => (
+                  <a
+                    key={contact.label}
+                    href={contact.href}
+                    target={contact.href.startsWith("http") ? "_blank" : undefined}
+                    rel={contact.href.startsWith("http") ? "noopener" : undefined}
+                    className="contact-card block no-underline"
+                  >
+                    <span className="contact-icon">{contact.icon}</span>
+                    <span className="contact-label">{contact.label}</span>
+                    <span className="contact-value">{contact.value}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="about-divider mt-10" />
+          <CurlyLine className="mt-5" />
         </div>
       </div>
     </section>
-  )
+  );
 }

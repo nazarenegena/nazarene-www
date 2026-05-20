@@ -3,7 +3,7 @@
 @theme {
     --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
     --font-body:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     --font-mono: ui-monospace, "SF Mono", "Menlo", monospace;
 
     --color-bg: #f5f5f2;
@@ -13,6 +13,9 @@
     --color-border: #e0e0d8;
     --color-accent: #d4a373;
     --color-reveal: #e8e4df;
+
+    --color-cocoa-ink: #472425;
+    --color-canvas-parchment: #fdfaf3;
 }
 
 * {
@@ -70,13 +73,13 @@ html.is-loading {
 .wrapperFirst {
     position: relative;
     border-radius: 0 0 60px 60px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .wrapperSecond {
     position: relative;
     border-radius: 60px 60px 0 0;
-    overflow: hidden;
+    overflow: visible;
     margin-top: -40px;
 }
 
@@ -116,16 +119,348 @@ html.is-loading {
     }
 }
 
-/* GSAP safety net: make animated content visible if animations fail */
-@keyframes gsap-fallback {
-    to {
-        opacity: 1 !important;
-        transform: none !important;
+/* ---- Stat Float ---- */
+@keyframes statFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+/* ---- Offset Shadow (Dyotanya style) ---- */
+.offset-shadow {
+    box-shadow: 5px -5px 0px 0px #333333;
+}
+
+/* ---- Dot Grid Background ---- */
+.bg-dot-grid {
+    background-image: radial-gradient(circle, #d4a37340 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* ---- Playful Card Hover ---- */
+.play-card {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.play-card:hover {
+    transform: translateY(-4px) rotate(-0.5deg);
+}
+
+/* Baseline: animated content starts visible, GSAP enhances on scroll */
+.about-label,
+.about-heading-line,
+.heading-swoosh,
+.about-intro span,
+.stat,
+.timeline-row,
+.skill-group,
+.js-card {
+    opacity: 1;
+}
+
+/* ---- Dyotanya About Section ---- */
+.about-section {
+    --about-card-surface: var(--color-surface);
+    --about-offset-shadow: #333332;
+    --about-radius: 20px;
+    --about-section-gap: 48px;
+    --about-card-padding: 48px;
+    --about-element-gap: 10px;
+    position: relative;
+}
+
+.about-section .about-frame {
+    position: relative;
+    z-index: 1;
+    border: 1px solid var(--color-accent);
+    border-radius: 24px;
+    padding: var(--about-card-padding);
+    background: var(--about-card-surface);
+}
+
+/* ---- Texture Layers (About) ---- */
+.about-section .about-grain,
+.about-section .about-wavy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Layer 1 — Paper grain (fixed, does not scroll) */
+.about-section .about-grain {
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22256%22 height=%22256%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E');
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+/* Layer 2 — Wavy line repeat (scrolls with page) */
+.about-section .about-wavy {
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 28%22 width=%22100%22 height=%2228%22%3E%3Cpath d=%22M0%2014 Q%2012.5%200%2C%2025%2014 T%2050%2014 T%2075%2014 T%20100%2014%22 stroke=%22%23c97d4e%22 stroke-width=%220.8%22 fill=%22none%22/%3E%3C/svg%3E');
+    background-repeat: repeat;
+    background-size: 100px 28px;
+}
+
+.about-section .about-card {
+    background: var(--about-card-surface);
+    border-radius: var(--about-radius);
+    box-shadow: 5px -5px 0px 0px var(--about-offset-shadow);
+    border: 1px solid var(--color-accent);
+    padding: 24px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.about-section .about-card:hover {
+    transform: translateY(-4px) rotate(-0.5deg);
+}
+
+.about-section .about-headline {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--color-fg);
+}
+
+.about-section .about-body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: -0.036em;
+    color: var(--color-fg);
+}
+
+.about-section .about-meta {
+    font-family: "Times New Roman", Times, serif;
+    color: var(--color-muted);
+    letter-spacing: 0.02em;
+}
+
+.about-section .about-pill {
+    display: inline-block;
+    border-radius: 50px;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0px 15px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.about-section .about-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--color-accent);
+    border-radius: 30px;
+    padding: 8px 0;
+    font-family: var(--font-body);
+    color: var(--color-fg);
+}
+
+.about-section .about-input::placeholder {
+    color: var(--color-accent);
+    opacity: 0.6;
+}
+
+.about-section .about-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.about-section .about-link:hover {
+    border-bottom-color: var(--color-accent);
+}
+
+.about-section .about-divider {
+    height: 1px;
+    background: var(--color-accent);
+    opacity: 0.2;
+}
+
+.about-section .about-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+    .about-section .about-frame {
+        padding: 24px;
+    }
+    .about-section .about-card {
+        padding: 16px;
     }
 }
-.hero-name,
-.hero-label,
-.nav-card,
-.js-card {
-    animation: gsap-fallback 0.01ms 5s forwards;
+
+/* ---- Dyotanya Projects Section ---- */
+.projects-section .project-card {
+    border: 1.5px solid #d4b896;
+    box-shadow: 5px -5px 0 0 #3d2e1e;
+    transition: all 0.25s ease;
+}
+
+.projects-section .project-card:nth-child(odd) {
+    transform: rotate(-0.5deg);
+}
+
+.projects-section .project-card:nth-child(even) {
+    transform: rotate(0.5deg);
+}
+
+.projects-section .project-card:hover:nth-child(odd) {
+    box-shadow: none;
+    transform: translate(-3px, 3px) rotate(-0.5deg);
+}
+
+.projects-section .project-card:hover:nth-child(even) {
+    box-shadow: none;
+    transform: translate(-3px, 3px) rotate(0.5deg);
+}
+
+.projects-section .project-image-placeholder {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid var(--color-accent);
+    background: #faf6f1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23c97d4e' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 18px 18px;
+    position: relative;
+}
+
+.projects-section .project-image-placeholder .project-screenshot-text {
+    opacity: 0.6;
+    transition: opacity 0.25s ease;
+}
+
+.projects-section .project-card:hover .project-image-placeholder .project-screenshot-text {
+    opacity: 0.8;
+}
+
+.projects-section .project-arrow {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(212, 163, 115, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-size: 14px;
+    line-height: 32px;
+    opacity: 0;
+    transform: translate(-6px, 6px);
+    transition: all 0.3s ease;
+}
+
+.projects-section .project-card:hover .project-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* ---- Dyotanya Contact Section ---- */
+.contact-section .contact-card {
+    background: #faf6f1;
+    border: 1.5px solid #d4b896;
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: #3d2e1e 4px -4px 0 0;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 120px;
+    justify-content: center;
+}
+
+.contact-section .contact-card:hover {
+    transform: translate(-2px, 2px);
+    box-shadow: none;
+}
+
+.contact-section .contact-card .contact-icon {
+    color: #c97d4e;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.contact-section .contact-card .contact-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c97d4e;
+    margin: 8px 0 4px;
+}
+
+.contact-section .contact-card .contact-value {
+    font-size: 14px;
+    color: #3d2e1e;
+    font-weight: 400;
+}
+
+.contact-section .contact-badge {
+    background: transparent;
+    border: 1.5px solid #c97d4e;
+    border-radius: 50px;
+    color: #c97d4e;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.contact-section .contact-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c97d4e;
+    display: inline-block;
+}
+
+.contact-section .contact-email-link {
+    color: #e85d2f;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.contact-section .contact-email-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .projects-section .about-frame {
+        padding: 24px;
+    }
+    .contact-section .about-frame {
+        padding: 24px;
+    }
+    .projects-section .project-image-placeholder {
+        min-height: 140px;
+    }
 }

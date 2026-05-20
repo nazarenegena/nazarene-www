@@ -23,7 +23,7 @@ export default function TextSplit({
   stagger = 0.02,
   delay = 0,
   y = 30,
-  duration = 0.7,
+  duration = 1.0,
   scrollTrigger = true,
   once = true,
 }: TextSplitProps) {
@@ -43,7 +43,7 @@ export default function TextSplit({
       opacity: 1,
       y: 0,
       duration,
-      ease: 'power2.out',
+      ease: 'expo.out',
       stagger,
       delay,
     }
@@ -66,5 +66,5 @@ export default function TextSplit({
     }
   }, [children, type, stagger, delay, y, duration, scrollTrigger, once, splitChars, splitWords])
 
-  return createElement(Tag, { ref: elRef, className }, children)
+  return createElement(Tag, { ref: elRef, className, 'data-split': '' }, children)
 }
