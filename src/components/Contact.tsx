@@ -176,7 +176,7 @@ export default function Contact() {
                 >
                   <path
                     d="M8 0 H3 V100 H8"
-                    stroke="#c97d4e"
+                    stroke="#b86a3e"
                     strokeWidth="1.5"
                     opacity="0.35"
                     vectorEffect="non-scaling-stroke"
@@ -187,16 +187,16 @@ export default function Contact() {
                 </h2>
               </div>
 
-              <p className="about-body text-[16px] text-fg/70 leading-[1.7] max-w-[400px] mb-6">
-                Have a project in mind? I'd love to hear from you.
-                Reach out through any of the channels below.
+              <p className="about-body text-[16px] text-fg/85 leading-[1.7] max-w-[400px] mb-6">
+                Got a project, a problem, or just want to talk about design
+                systems at 11pm? I'm in. Pick your channel.
               </p>
 
               <a
                 href="mailto:nazarenewanyaga24@gmail.com"
                 className="contact-email-link"
               >
-                or email me directly →
+                skip the formalities, just email me →
               </a>
 
               <CurlyLine className="curly-line" />

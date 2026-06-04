@@ -12,7 +12,8 @@ export default function ScrollProgress() {
 
     const updateBar = () => {
       if (!barRef.current) return;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / docHeight) * 100;
       barRef.current.style.width = `${progress}%`;
     };
@@ -28,10 +29,11 @@ export default function ScrollProgress() {
   return (
     <div
       ref={barRef}
-      className="fixed top-0 left-0 h-[2px] z-[40]"
+      className="fixed top-0 left-0 h-[4px] z-[40]"
       style={{
         background: "#e85d26",
-        boxShadow: "0 0 8px rgba(232, 93, 38, 0.5), 0 0 20px rgba(232, 93, 38, 0.2)",
+        boxShadow:
+          "0 0 8px rgba(232, 93, 38, 0.5), 0 0 20px rgba(232, 93, 38, 0.2)",
         width: "0%",
         pointerEvents: "none",
       }}

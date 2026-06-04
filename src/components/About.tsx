@@ -10,7 +10,7 @@ const experienceData = [
     company: "Okapi Sports",
     role: "Frontend Engineer",
     start: "09/2025",
-    end: "Present",
+    end: "03/2026",
   },
   {
     company: "Outreachy / Mozilla",
@@ -46,7 +46,7 @@ const experienceData = [
 
 const skillCategories = [
   {
-    label: "frameworks",
+    label: "the stack i live in",
     items: [
       "JavaScript",
       "TypeScript",
@@ -58,13 +58,20 @@ const skillCategories = [
       "CSS3",
     ],
   },
-  { label: "state", items: ["Redux", "Context API"] },
+  { label: "how i manage state", items: ["Redux", "Context API", "Zustand"] },
   {
-    label: "styling",
-    items: ["Tailwind CSS", "Shadcn", "CSS Modules"],
+    label: "making things pretty",
+    items: [
+      "Tailwind CSS",
+      "Shadcn",
+      "CSS Modules",
+      "Material UI",
+      "Chakra UI",
+      "Bootstrap",
+    ],
   },
   {
-    label: "design systems",
+    label: "my comfort zone",
     items: [
       "Design tokens",
       "Component library architecture",
@@ -74,7 +81,7 @@ const skillCategories = [
     ],
   },
   {
-    label: "ui/ux",
+    label: "how i think about people",
     items: [
       "Information hierarchy",
       "Interaction patterns",
@@ -83,16 +90,17 @@ const skillCategories = [
     ],
   },
   {
-    label: "tools",
+    label: "my daily toolkit",
     items: ["Git", "GitHub", "Vite", "CI/CD", "RESTful APIs", "Agile", "Scrum"],
   },
-  { label: "testing", items: ["Cypress", "Jest"] },
+  { label: "trust but verify", items: ["Cypress", "Jest"] },
+  { label: "taming the inputs", items: ["React Hook Form", "Formik"] },
 ];
 
 const statLayout = [
-  { y: -6, rotate: -0.5, label: "Years Experience", target: 5 },
-  { y: 4, rotate: 0.8, label: "Companies", target: 6 },
-  { y: -4, rotate: -0.3, label: "Design Systems", target: 1 },
+  { y: -6, rotate: -0.5, label: "Years Experience", target: 5, micro: "years (and counting)" },
+  { y: 4, rotate: 0.8, label: "Companies", target: 6, micro: "companies, all still talking to me" },
+  { y: -4, rotate: -0.3, label: "Design Systems", target: 1, micro: "design system i'm unreasonably proud of" },
 ];
 
 const skillTilts = [-0.8, 0.5, -0.3, 1.0, -0.6, 0.4, -0.5];
@@ -109,7 +117,8 @@ export default function About() {
 
     const label = section.querySelector(".about-label");
     if (label) {
-      const t = gsap.fromTo(label,
+      const t = gsap.fromTo(
+        label,
         { x: -30, opacity: 0 },
         {
           scrollTrigger: {
@@ -122,14 +131,15 @@ export default function About() {
           duration: 0.6,
           ease: "power2.out",
           immediateRender: false,
-        }
+        },
       );
       if (t.scrollTrigger) triggers.push(t.scrollTrigger);
     }
 
     const headingLines = section.querySelectorAll(".about-heading-line");
     if (headingLines.length) {
-      const t = gsap.fromTo(headingLines,
+      const t = gsap.fromTo(
+        headingLines,
         { y: 60, opacity: 0 },
         {
           scrollTrigger: {
@@ -143,14 +153,15 @@ export default function About() {
           stagger: 0.15,
           ease: "power3.out",
           immediateRender: false,
-        }
+        },
       );
       if (t.scrollTrigger) triggers.push(t.scrollTrigger);
     }
 
     const swoosh = section.querySelector(".heading-swoosh");
     if (swoosh) {
-      const t = gsap.fromTo(swoosh,
+      const t = gsap.fromTo(
+        swoosh,
         { scaleX: 0 },
         {
           scrollTrigger: {
@@ -163,7 +174,7 @@ export default function About() {
           ease: "power2.out",
           transformOrigin: "left center",
           immediateRender: false,
-        }
+        },
       );
       if (t.scrollTrigger) triggers.push(t.scrollTrigger);
     }
@@ -182,7 +193,8 @@ export default function About() {
           introEl.appendChild(span);
           wordSpans.push(span);
         });
-        const t = gsap.fromTo(wordSpans,
+        const t = gsap.fromTo(
+          wordSpans,
           { y: 15, opacity: 0 },
           {
             scrollTrigger: {
@@ -195,7 +207,7 @@ export default function About() {
             opacity: 1,
             stagger: 0.03,
             ease: "power2.out",
-          }
+          },
         );
         if (t.scrollTrigger) triggers.push(t.scrollTrigger);
       }
@@ -203,7 +215,8 @@ export default function About() {
 
     const statCards = section.querySelectorAll(".stat");
     if (statCards.length) {
-      const t = gsap.fromTo(statCards,
+      const t = gsap.fromTo(
+        statCards,
         { y: 50, opacity: 0 },
         {
           scrollTrigger: {
@@ -217,7 +230,7 @@ export default function About() {
           stagger: 0.15,
           ease: "power2.out",
           immediateRender: false,
-        }
+        },
       );
       if (t.scrollTrigger) triggers.push(t.scrollTrigger);
 
@@ -251,7 +264,8 @@ export default function About() {
 
     const timelineRows = section.querySelectorAll(".timeline-row");
     if (timelineRows.length) {
-      const t = gsap.fromTo(timelineRows,
+      const t = gsap.fromTo(
+        timelineRows,
         { opacity: 0.3, y: 8 },
         {
           opacity: 1,
@@ -262,29 +276,29 @@ export default function About() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
       if (t.scrollTrigger) triggers.push(t.scrollTrigger);
     }
 
     const skillGroups = section.querySelectorAll(".skill-group");
     if (skillGroups.length) {
-      const t = gsap.fromTo(skillGroups,
+      const t = gsap.fromTo(
+        skillGroups,
         { y: 30, opacity: 0, rotate: -2 },
         {
           scrollTrigger: {
             trigger: skillGroups[0].parentElement,
             start: "top 85%",
-            toggleActions: "play none none none",
+            end: "top 45%",
+            scrub: 1,
           },
           y: 0,
           opacity: 1,
           rotate: 0,
-          duration: 0.5,
           stagger: 0.06,
           ease: "power2.out",
-          immediateRender: false,
-        }
+        },
       );
       if (t.scrollTrigger) triggers.push(t.scrollTrigger);
     }
@@ -310,7 +324,7 @@ export default function About() {
         <div className="about-frame">
           <div className="flex items-center gap-4 mb-10">
             <span className="about-label font-mono text-[10px] tracking-[0.12em] text-accent uppercase shrink-0">
-              ✦ 01 //about me
+              ✦ 01 // a little more on me
             </span>
             <span className="flex-1 about-divider" />
           </div>
@@ -349,13 +363,13 @@ export default function About() {
 
             <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
               <span
-                className="about-heading-line about-headline text-[clamp(24px,4vw,48px)] leading-[1] italic text-fg/70"
+                className="about-heading-line about-headline text-[clamp(24px,4vw,48px)] leading-[1] italic text-fg/85"
                 style={{ transform: "rotate(0.6deg)" }}
               >
                 & DESIGN SYSTEM
               </span>
               <span
-                className="about-heading-line about-headline text-[clamp(24px,4vw,48px)] leading-[1] italic text-fg/70"
+                className="about-heading-line about-headline text-[clamp(24px,4vw,48px)] leading-[1] italic text-fg/85"
                 style={{ transform: "rotate(-0.3deg)" }}
               >
                 BUILDER
@@ -398,19 +412,34 @@ export default function About() {
               />
             </svg>
             <div className="flex-1">
-              <p className="about-intro about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg/85 max-w-[700px]">
-                I help companies, brands and entrepreneurs develop digital
-                products and achieve their goals.
+              <p className="about-intro about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px]">
+                JavaScript engineer by training, designer by curiosity, and a
+                little bit of both by choice.
               </p>
-              <p className="font-mono text-[10px] text-accent/60 tracking-[0.1em] mt-2 uppercase">
-                ✧ functional solutions × aesthetics
+              <p className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4">
+                I've spent the last 5 years building interfaces that feel as
+                good as they look — working across startups and product teams,
+                writing the code and occasionally rearranging the pixels too.
+                Somewhere along the way I fell in love with design systems, the
+                kind of work that lives at the intersection of logic and
+                aesthetics.
+              </p>
+              <p className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4">
+                When I'm not pushing components around, I'm in Nairobi — hiking,
+                collecting anime, pressing flowers, and finding colour everywhere
+                I look. I think that curiosity is what makes me a better
+                engineer.
+              </p>
+              <p className="font-mono text-[10px] text-accent tracking-[0.1em] mt-2 uppercase">
+                ✧ I'm currently open to frontend and design-adjacent roles where
+                I get to do both.
               </p>
             </div>
           </div>
 
           <CurlyLine className="my-8" />
 
-          <div className="font-mono text-[9px] tracking-[0.14em] text-accent/60 uppercase mb-5">
+          <div className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
             ✦ metrics
           </div>
 
@@ -432,24 +461,31 @@ export default function About() {
                   className="stat-number about-headline text-[clamp(44px,4vw,60px)] tracking-[-0.03em] leading-none text-fg block"
                   data-target={s.target}
                 >
-                  {i === 0 ? stats.years : i === 1 ? stats.companies : stats.systems}
+                  {i === 0
+                    ? stats.years
+                    : i === 1
+                      ? stats.companies
+                      : stats.systems}
                 </span>
                 <span className="about-meta text-[9px] tracking-[0.1em] uppercase block mt-1.5">
                   {s.label}
+                </span>
+                <span className="font-mono text-[10px] text-accent tracking-[0.06em] block mt-0.5">
+                  {s.micro}
                 </span>
               </div>
             ))}
           </div>
 
           <div className="text-center mb-8">
-            <span className="font-mono text-[10px] text-accent/50 tracking-[0.12em] uppercase">
+            <span className="font-mono text-[10px] text-accent tracking-[0.12em] uppercase">
               ✦ 5+ years of shipping ✦
             </span>
           </div>
 
           <CurlyLine className="my-8" />
 
-          <div className="font-mono text-[9px] tracking-[0.14em] text-accent/60 uppercase mb-5">
+          <div className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
             ✦ experience
           </div>
 
@@ -479,8 +515,8 @@ export default function About() {
 
           <CurlyLine className="my-8" />
 
-          <div className="font-mono text-[9px] tracking-[0.14em] text-accent/60 uppercase mb-5">
-            ✦ tooling
+          <div className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
+            ✦ skills
           </div>
 
           <div className="flex gap-4">
@@ -503,7 +539,7 @@ export default function About() {
             </svg>
             <div className="flex-1">
               <div className="skills-body flex flex-wrap justify-center gap-5">
-                {skillCategories.map((cat, idx) => (
+                {skillCategories?.map((cat, idx) => (
                   <div
                     key={cat.label}
                     className="skill-group about-card"
@@ -513,16 +549,31 @@ export default function About() {
                       flex: "1 1 auto",
                     }}
                   >
-                    <p className="font-mono text-[8px] tracking-[0.16em] text-accent uppercase mb-2">
+                    <p className="font-mono text-[10px] tracking-[0.16em] text-accent uppercase mb-2">
                       [{cat.label}]
                     </p>
-                    <p className="font-mono text-[10px] leading-[1.8] text-fg/65">
+                    <p className="font-mono text-[10px] leading-[1.8] text-fg/80">
                       {cat.items.join(", ")}
                     </p>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <span className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-4 block">
+              ✦ resume
+            </span>
+            <a
+              href="/Nazarene_Wanyaga_Resume.pdf"
+              target="_blank"
+              rel="noopener"
+              className="about-pill inline-block text-[14px]"
+              download
+            >
+              the full story →
+            </a>
           </div>
 
           <div className="about-divider mt-10" />

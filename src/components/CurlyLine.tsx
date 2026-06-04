@@ -10,7 +10,7 @@ export default function CurlyLine({ className = "" }: { className?: string }) {
         stroke="currentColor" 
         strokeWidth="1.5" 
         fill="none" 
-        className="text-accent/40"
+        className="text-accent"
       />
     </svg>
   )

@@ -9,16 +9,18 @@ const projects = [
   {
     number: "01",
     title: "Yuno",
-    subtitle: "Design Systems",
+    subtitle: "a design system that actually gets used",
     year: "2024",
     href: "https://yuno.somethinglabs.io",
+    cta: "explore the system →",
   },
   {
     number: "02",
     title: "Sahani",
-    subtitle: "Health Tech",
+    subtitle: "making healthcare feel a little less clinical",
     year: "2025",
     href: "https://sahani.app",
+    cta: "see it in action →",
   },
 ];
 
@@ -46,7 +48,7 @@ export default function Projects() {
           start: "top 80%",
           toggleActions: "play none none none",
         },
-      }
+      },
     );
 
     return () => {
@@ -94,7 +96,7 @@ export default function Projects() {
           <CurlyLine className="my-8" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {projects.map((project, idx) => (
+            {projects?.map((project) => (
               <a
                 key={project.number}
                 href={project.href}
@@ -107,10 +109,8 @@ export default function Projects() {
                 }}
               >
                 <div className="project-image-placeholder relative flex items-center justify-center bg-[#faf6f1]">
-                  <div className="project-arrow">
-                    ↗
-                  </div>
-                  <span className="font-mono text-[10px] tracking-[0.14em] text-accent/60 uppercase project-screenshot-text">
+                  <div className="project-arrow">↗</div>
+                  <span className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase project-screenshot-text">
                     [project screenshot]
                   </span>
                 </div>
@@ -126,12 +126,12 @@ export default function Projects() {
                     {project.title}
                   </h3>
 
-                  <p className="about-body text-[14px] text-fg/60 mb-4">
+                  <p className="about-body text-[14px] text-fg/75 mb-4">
                     {project.subtitle}
                   </p>
 
                   <span className="about-pill inline-block text-[12px] group-hover:opacity-90 transition-opacity">
-                    View Project →
+                    {project.cta}
                   </span>
                 </div>
               </a>
