@@ -447,17 +447,26 @@ export default function SplitHero() {
         <div ref={tooltipRef} className="tooltip">
           ← designer
         </div>
-        <div className="cta-wrap">
+        <div className="film-strip-cta">
+          <div className="film-holes">
+            <span className="film-hole" />
+            <span className="film-hole" />
+            <span className="film-hole" />
+          </div>
           <a
             ref={ctaRef}
             onClick={handleCtaClick}
-            className="cta"
             href="#about"
+            className="film-body"
           >
-            [ view the full picture]
+            [ view the full picture ]
           </a>
+          <div className="film-holes">
+            <span className="film-hole" />
+            <span className="film-hole" />
+            <span className="film-hole" />
+          </div>
         </div>
-
         <div className="links">
           <span className="links-label">not just a dev, here's proof →</span>
           <br />
