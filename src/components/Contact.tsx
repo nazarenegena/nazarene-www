@@ -193,8 +193,8 @@ export default function Contact() {
               </div>
 
               <p className="about-body text-[16px] text-fg/85 leading-[1.7] max-w-[400px] mb-6">
-                Got a project, a problem, or just want to talk about design
-                systems at 11pm? I'm in. Pick your channel.
+Got a project, a problem, or just want to nerd out about design
+systems? I'm in. Pick your channel.
               </p>
 
               <a
