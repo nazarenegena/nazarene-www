@@ -1,0 +1,143 @@
+/* ---- Dyotanya About Section ---- */
+.about-section {
+    --about-card-surface: var(--color-surface);
+    --about-offset-shadow: #333332;
+    --about-radius: 20px;
+    --about-section-gap: 48px;
+    --about-card-padding: 48px;
+    --about-element-gap: 10px;
+    position: relative;
+}
+
+.about-section .about-frame {
+    position: relative;
+    z-index: 1;
+    border: 1px solid var(--color-accent);
+    border-radius: 24px;
+    padding: var(--about-card-padding);
+    background: var(--about-card-surface);
+}
+
+/* ---- Texture Layers (About) ---- */
+.about-section .about-grain,
+.about-section .about-wavy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Layer 1 — Paper grain (scrolls with page) */
+.about-section .about-grain {
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22256%22 height=%22256%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E");
+    background-size: auto;
+    background-repeat: repeat;
+}
+
+/* Layer 2 — Wavy line repeat (scrolls with page) */
+.about-section .about-wavy {
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 28%22 width=%22100%22 height=%2228%22%3E%3Cpath d=%22M0%2014 Q%2012.5%200%2C%2025%2014 T%2050%2014 T%2075%2014 T%20100%2014%22 stroke=%22%23c97d4e%22 stroke-width=%220.8%22 fill=%22none%22/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 100px 28px;
+}
+
+.about-section .about-card {
+    background: var(--about-card-surface);
+    border-radius: var(--about-radius);
+    box-shadow: 5px -5px 0px 0px var(--about-offset-shadow);
+    border: 1px solid var(--color-accent);
+    padding: 24px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.about-section .about-card:hover {
+    transform: translateY(-4px) rotate(-0.5deg);
+}
+
+.about-section .about-headline {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--color-fg);
+}
+
+.about-section .about-body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: -0.036em;
+    color: var(--color-fg);
+}
+
+.about-section .about-meta {
+    font-family: "Times New Roman", Times, serif;
+    color: var(--color-muted);
+    letter-spacing: 0.02em;
+}
+
+.about-section .about-pill {
+    display: inline-block;
+    border-radius: 50px;
+    background: var(--color-accent);
+    color: #ffff;
+    padding: 5px 15px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.about-section .about-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--color-accent);
+    border-radius: 30px;
+    padding: 8px 0;
+    font-family: var(--font-body);
+    color: var(--color-fg);
+}
+
+.about-section .about-input::placeholder {
+    color: var(--color-accent);
+    opacity: 0.6;
+}
+
+.about-section .about-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.about-section .about-link:hover {
+    border-bottom-color: var(--color-accent);
+}
+
+.about-section .about-divider {
+    height: 1px;
+    background: var(--color-accent);
+    opacity: 0.2;
+}
+
+.about-section .about-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+    .about-section .about-frame {
+        padding: 24px;
+    }
+    .about-section .about-card {
+        padding: 16px;
+    }
+}

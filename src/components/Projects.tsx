@@ -3,6 +3,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CurlyLine from "./CurlyLine";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import "../styles/projects.css";
+import "../styles/shared.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +34,8 @@ const projects = [
   {
     number: "03",
     title: "Aureah Design",
-    subtitle: "Your personal cycle and wellness companion. Track, understand, and thrive.",
+    subtitle:
+      "Your personal cycle and wellness companion. Track, understand, and thrive.",
     year: "2026",
     href: "https://www.figma.com/design/ERiW9lds6vUDR6ErMrTgtp/Aureah-Designs?node-id=0-1&t=58Fnby3jSrRxXZpE-1",
     image: "/aureah-splash-screen.png",
@@ -64,7 +67,7 @@ export default function Projects() {
 
     const cards = section.querySelectorAll(".project-card");
 
-    gsap.fromTo(
+    const st = gsap.fromTo(
       cards,
       { y: 60, opacity: 0, rotate: -1 },
       {
@@ -80,10 +83,10 @@ export default function Projects() {
           toggleActions: "play none none none",
         },
       },
-    );
+    ).scrollTrigger;
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      st?.kill();
     };
   }, []);
 
@@ -91,7 +94,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="projects-section bg-dot-grid bg-bg px-6 sm:px-12 py-24 sm:py-32"
+      className="projects-section bg-dot-grid bg-bg px-6 sm:px-12 pb-24 sm:pb-32 pt-12 sm:pt-16"
     >
       <div className="max-w-[1400px] mx-auto">
         <div className="about-frame">
@@ -105,12 +108,12 @@ export default function Projects() {
             <span className="flex-1 about-divider" />
           </div>
 
-          <div className="mb-3">
+          <div className="">
             <h2
               data-reveal
-              className="about-heading-line about-headline text-[clamp(36px,6vw,72px)] leading-[0.9]"
+              className="about-heading-line about-headline text-[clamp(36px,3vw,72px)] leading-[0.9]"
             >
-              Selected Works
+              What I've Been Up To
             </h2>
 
             <svg
@@ -141,6 +144,7 @@ export default function Projects() {
                       <img
                         src={project.image}
                         alt={project.title}
+                        loading="lazy"
                         className="w-full h-full object-cover absolute inset-0"
                       />
                     ) : project.href ? (
@@ -184,7 +188,9 @@ export default function Projects() {
                     </p>
 
                     <div className="flex flex-wrap gap-2">
-                      <span className={`about-pill inline-block text-[12px] transition-opacity ${project.href ? "group-hover:opacity-90" : "opacity-60 cursor-default"}`}>
+                      <span
+                        className={`about-pill inline-block text-[12px] transition-opacity ${project.href ? "group-hover:opacity-90" : "opacity-60 cursor-default"}`}
+                      >
                         {project.cta}
                       </span>
                       {project.brandSpec && (
@@ -205,13 +211,24 @@ export default function Projects() {
               const style = { padding: "0", overflow: "hidden" as const };
               if (project.href) {
                 return (
-                  <a key={project.number} href={project.href} target="_blank" rel="noopener" className="project-card about-card block no-underline group" style={style}>
+                  <a
+                    key={project.number}
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="project-card about-card block no-underline group"
+                    style={style}
+                  >
                     {cardContent}
                   </a>
                 );
               }
               return (
-                <div key={project.number} className="project-card about-card block no-underline group cursor-default" style={style}>
+                <div
+                  key={project.number}
+                  className="project-card about-card block no-underline group cursor-default"
+                  style={style}
+                >
                   {cardContent}
                 </div>
               );

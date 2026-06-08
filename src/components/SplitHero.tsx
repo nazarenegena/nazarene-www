@@ -1,86 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { lenisInstance } from "../hooks/useSmoothScroll";
-
-const animeItems = [
-  { src: "bleach.jpeg", label: "BL", rotate: -2 },
-  { src: "mha.jpeg", label: "MH", rotate: 3 },
-  { src: "sakamoto_days.webp", label: "SD", rotate: -1 },
-  { src: "black_clover.jpeg", label: "BC", rotate: 1 },
-  { src: "dandandan.jpeg", label: "DD", rotate: 2 },
-];
-
-const polaroids = [
-  {
-    src: "/photos/sunset.jpg",
-    caption: "sunset",
-    rotate: 8,
-    top: "65%",
-    right: "45%",
-    tooltip: "golden hour magic",
-  },
-  {
-    src: "/photos/flowers.jpg",
-    caption: "flowers",
-    rotate: -9,
-    top: "62%",
-    right: "35%",
-    tooltip: "nature's art",
-  },
-  {
-    src: "/photos/cream_flower.jpg",
-    caption: "cream",
-    rotate: 10,
-    top: "30%",
-    right: "15%",
-    tooltip: "taken on a good day",
-  },
-  {
-    src: "/photos/rose.jpg",
-    caption: "rose",
-    rotate: -6,
-    top: "18%",
-    left: "24%",
-    tooltip: "this one smells nice",
-  },
-  {
-    src: "/photos/hike.jpg",
-    caption: "hike",
-    rotate: -3,
-    top: "60%",
-    right: "12%",
-    tooltip: "worth the climb",
-  },
-  {
-    src: "/photos/white_flowers.jpg",
-    caption: "sunflowers",
-    rotate: 8,
-    top: "17%",
-    left: "14%",
-    tooltip: "perfect lighting",
-  },
-  {
-    src: "/photos/art_gallery.jpg",
-    caption: "art",
-    rotate: 3,
-    top: "60%",
-    right: "2%",
-    tooltip: "feeling cultured",
-  },
-  {
-    src: "/photos/books.jpg",
-    caption: "reading",
-    rotate: -8,
-    top: "34%",
-    right: "5%",
-    tooltip: "lost in pages",
-  },
-];
-const terminalLines = [
-  ["whoami", "nazarene. dev. nairobi-based."],
-  ["cat stack.txt", "Javascript / TypeScript / React.js / "],
-  ["cat status.txt", "open to work ✦"],
-];
+import { animeItems, polaroids, terminalLines } from "../data/heroData";
+import "../styles/split-hero.css";
 
 export default function SplitHero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -99,6 +21,40 @@ export default function SplitHero() {
   const rafRef = useRef(0);
   const idleTweenRef = useRef<gsap.core.Tween | null>(null);
   const idleTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const floatingTweensRef = useRef<gsap.core.Tween[]>([]);
+  const updateSplitRef = useRef<(() => void) | null>(null);
+  const mobileTweenRef = useRef<gsap.core.Tween | null>(null);
+
+  const killHeroAnimations = () => {
+    cancelAnimationFrame(rafRef.current);
+    floatingTweensRef.current.forEach((t) => t.kill());
+    floatingTweensRef.current = [];
+    idleTweenRef.current?.kill();
+    idleTweenRef.current = null;
+    mobileTweenRef.current?.kill();
+    mobileTweenRef.current = null;
+    if (idleTimeoutRef.current) {
+      clearTimeout(idleTimeoutRef.current);
+      idleTimeoutRef.current = null;
+    }
+  };
+
+  const restartHeroAnimations = () => {
+    const items = collageItemsRef.current.filter(Boolean);
+    items.forEach((el) => {
+      const dur = 3 + Math.random() * 2;
+      const tween = gsap.to(el, {
+        y: -6,
+        duration: dur,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: Math.random() * 1.5,
+      });
+      floatingTweensRef.current.push(tween);
+    });
+    updateSplitRef.current?.();
+  };
 
   useEffect(() => {
     const isTouch = window.matchMedia("(hover: none)").matches;
@@ -119,32 +75,33 @@ export default function SplitHero() {
           ease: "power4.out",
           delay: 0.05,
           onComplete: () => {
-            const items = collageItemsRef.current.filter(Boolean);
-            if (!items.length) return;
-            gsap.fromTo(
-              items,
-              { opacity: 0, scale: 0.85 },
-              {
-                opacity: 1,
-                scale: 1,
-                duration: 0.6,
-                stagger: 0.08,
-                ease: "power3.out",
-                onComplete: () =>
-                  items.forEach((el) => {
-                    const dur = 3 + Math.random() * 2;
-                    gsap.to(el, {
-                      y: -6,
-                      duration: dur,
-                      ease: "sine.inOut",
-                      yoyo: true,
-                      repeat: -1,
-                      delay: Math.random() * 1.5,
-                    });
-                  }),
-              },
-            );
-          },
+              const items = collageItemsRef.current.filter(Boolean);
+              if (!items.length) return;
+              gsap.fromTo(
+                items,
+                { opacity: 0, scale: 0.85 },
+                {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.6,
+                  stagger: 0.08,
+                  ease: "power3.out",
+                  onComplete: () =>
+                    items.forEach((el) => {
+                      const dur = 3 + Math.random() * 2;
+                      const tween = gsap.to(el, {
+                        y: -6,
+                        duration: dur,
+                        ease: "sine.inOut",
+                        yoyo: true,
+                        repeat: -1,
+                        delay: Math.random() * 1.5,
+                      });
+                      floatingTweensRef.current.push(tween);
+                    }),
+                },
+              );
+            },
         });
       },
     });
@@ -181,6 +138,7 @@ export default function SplitHero() {
       }
       rafRef.current = requestAnimationFrame(updateSplit);
     };
+    updateSplitRef.current = updateSplit;
     const stopIdle = () => {
       idleTweenRef.current?.kill();
       idleTweenRef.current = null;
@@ -206,18 +164,19 @@ export default function SplitHero() {
       idleTimeoutRef.current = setTimeout(startIdle, 3000);
     };
     if (!isTouch) {
-      window.addEventListener("mousemove", (e) => {
+      const handleMouseMove = (e: MouseEvent) => {
         targetRef.current = e.clientX / window.innerWidth;
         resetIdle();
         const cx = e.clientX / window.innerWidth - 0.5;
         collageItemsRef.current
           .filter(Boolean)
           .forEach((el, i) => gsap.set(el, { x: cx * (6 + i * 4) }));
-      });
+      };
+      window.addEventListener("mousemove", handleMouseMove);
       resetIdle();
       updateSplit();
       return () => {
-        window.removeEventListener("mousemove", () => {});
+        window.removeEventListener("mousemove", handleMouseMove);
         cancelAnimationFrame(rafRef.current);
         stopIdle();
         if (idleTimeoutRef.current) clearTimeout(idleTimeoutRef.current);
@@ -225,7 +184,7 @@ export default function SplitHero() {
       };
     } else {
       const mo = { val: 0.3 };
-      gsap.to(mo, {
+      mobileTweenRef.current = gsap.to(mo, {
         val: 0.7,
         duration: 4,
         ease: "sine.inOut",
@@ -254,6 +213,7 @@ export default function SplitHero() {
         ease: "power4.inOut",
         onComplete: () => {
           if (heroRef.current) heroRef.current.style.pointerEvents = "none";
+          killHeroAnimations();
           setIsDismissed(true);
           if (sneakBackRef.current) sneakBackRef.current.classList.add("show");
         },
@@ -270,6 +230,9 @@ export default function SplitHero() {
         y: "0%",
         duration: 0.8,
         ease: "power4.inOut",
+        onComplete: () => {
+          restartHeroAnimations();
+        },
       });
       setIsDismissed(false);
       if (sneakBackRef.current) sneakBackRef.current.classList.remove("show");
@@ -394,11 +357,14 @@ export default function SplitHero() {
             </div>
             <div className="badge-card-body">
               <div className="badge-photo-wrap">
-                <img
-                  className="badge-photo"
-                  src="/photos/profile_pic.jpg"
-                  alt=""
-                />
+                  <img
+                    className="badge-photo"
+                    src="/photos/profile_pic.jpg"
+                    alt=""
+                    loading="lazy"
+                    width={50}
+                    height={50}
+                  />
               </div>
               <div className="badge-text">
                 <div className="badge-name">Nazarene Wanyaga</div>

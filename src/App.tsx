@@ -9,13 +9,11 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { useGsapScroll } from "./hooks/useGsapScroll";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
-import { useScrollReveal } from "./hooks/useScrollReveal";
 import { getLenis } from "./hooks/useSmoothScroll";
 
 function App() {
   useSmoothScroll();
   useGsapScroll();
-  useScrollReveal();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

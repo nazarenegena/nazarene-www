@@ -1,0 +1,83 @@
+/* ---- Dyotanya Contact Section ---- */
+.contact-section .contact-card {
+    background: #faf6f1;
+    border: 1.5px solid #d4b896;
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: #3d2e1e 4px -4px 0 0;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 120px;
+    justify-content: center;
+}
+
+.contact-section .contact-card:hover {
+    transform: translate(-2px, 2px);
+    box-shadow: none;
+}
+
+.contact-section .contact-card .contact-icon {
+    color: #b86a3e;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.contact-section .contact-card .contact-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #b86a3e;
+    margin: 8px 0 4px;
+}
+
+.contact-section .contact-card .contact-value {
+    font-size: 14px;
+    color: #3d2e1e;
+    font-weight: 400;
+}
+
+.contact-section .contact-badge {
+    background: transparent;
+    border: 1.5px solid #b86a3e;
+    border-radius: 50px;
+    color: #b86a3e;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.contact-section .contact-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c97d4e;
+    display: inline-block;
+}
+
+.contact-section .contact-email-link {
+    color: #e85d2f;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.contact-section .contact-email-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .contact-section .about-frame {
+        padding: 24px;
+    }
+}

@@ -3,6 +3,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CurlyLine from "./CurlyLine";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import "../styles/contact.css";
+import "../styles/shared.css";
 
 gsap.registerPlugin(ScrollTrigger);
 

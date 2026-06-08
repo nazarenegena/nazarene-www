@@ -1,0 +1,565 @@
+/* ---- SplitHero Section ---- */
+.hero {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    overflow: hidden;
+    background: #ede8df;
+    font-family: "Space Mono", "Courier New", monospace;
+}
+.hero-hidden {
+    transform: translateY(0);
+}
+.panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(40px, 6vw, 80px);
+}
+.panel-light {
+    background: #ede8df;
+    color: #1c1814;
+    clip-path: inset(0 100% 0 0);
+}
+.panel-dark {
+    background: #1c1814;
+    color: #ffffff;
+    clip-path: inset(0 0 0 100%);
+}
+.badge {
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    color: #e85d26;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.badge-l {
+    margin-bottom: clamp(12px, 1.5vw, 20px);
+}
+.badge-r {
+    position: absolute;
+    top: clamp(48px, 6vh, 72px);
+    right: clamp(24px, 3vw, 48px);
+    opacity: 0.7;
+    font-weight: 700;
+}
+.name {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(2.8rem, 7vw, 8rem);
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    margin-bottom: clamp(16px, 2vw, 28px);
+    color: #1c1814;
+}
+.name-dark {
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+}
+.sub {
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: clamp(20px, 1.1vw, 17px);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #1c1814;
+}
+.term {
+    background: #1c1814;
+    border: 1px solid #d4cdc0;
+    border-radius: 4px;
+    padding: 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    font-family: "Space Mono", "Courier New", monospace;
+    min-width: 300px;
+    margin-top: 40px;
+    align-self: flex-start;
+}
+.term-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #d4cdc0;
+    opacity: 0.7;
+}
+.term-path {
+    font-size: 12px;
+    color: #6bcb77;
+    letter-spacing: 0.04em;
+}
+.term-shell {
+    font-size: 12px;
+    color: #ffffff;
+}
+.term-body {
+    padding: 8px 10px 10px;
+}
+.term-line {
+    font-size: 12px;
+    min-width: fit-content;
+    line-height: 1.7;
+    color: #ffffff;
+}
+.term-prompt {
+    color: #e85d26;
+    font-weight: 700;
+    margin-right: 6px;
+}
+.term-output {
+    font-size: 9px;
+    line-height: 1.7;
+    color: #ffffff;
+    opacity: 0.95;
+    padding-left: 14px;
+}
+.term-space {
+    margin-top: 4px;
+}
+.term-cursor {
+    color: #e85d26;
+    font-weight: 700;
+}
+.role {
+    position: absolute;
+    bottom: clamp(80px, 10vh, 110px);
+    font-family: "Bebas Neue", "Impact", sans-serif;
+    font-size: clamp(20px, 3vw, 36px);
+    letter-spacing: -0.02em;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.role-l {
+    right: clamp(24px, 3vw, 48px);
+    text-align: right;
+    white-space: nowrap;
+}
+.role-r {
+    left: clamp(24px, 3vw, 48px);
+    white-space: nowrap;
+}
+.anime-grid {
+    position: absolute;
+    top: 3%;
+    right: 36%;
+}
+.anime-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.anime-row {
+    display: flex;
+    gap: 7px;
+}
+.anime-card {
+    background: #f5f0e8;
+    padding: 2px 2px 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    border-radius: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.anime-pin {
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #e85d26;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+.anime-img {
+    display: block;
+    width: 52px;
+    height: auto;
+    border-radius: 1px;
+}
+.anime-label {
+    position: absolute;
+    bottom: 2px;
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 6px;
+    color: #1c1814;
+    letter-spacing: 0.06em;
+    opacity: 0.7;
+}
+.player {
+    position: absolute;
+    top: 40%;
+    right: 40%;
+    transform: rotate(2deg);
+    background: #ede8df;
+    border-radius: 4px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 250px;
+    font-family: "Space Mono", "Courier New", monospace;
+}
+.player-header {
+    font-size: 15px;
+    color: #e85d26;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.player-body {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.player-art {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #1c1814;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow:
+        inset 0 0 0 2px rgba(237, 232, 223, 0.08),
+        inset 0 0 0 5px rgba(237, 232, 223, 0.05),
+        inset 0 0 0 9px rgba(237, 232, 223, 0.03);
+}
+.player-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e85d26;
+    box-shadow: 0 0 3px rgba(232, 93, 38, 0.3);
+    position: absolute;
+}
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+.player-track {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1c1814;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+}
+.player-artist {
+    font-size: 8px;
+    color: #000000;
+    letter-spacing: 0.04em;
+}
+.player-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.player-bar {
+    height: 5px;
+    background: #d4cdc0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+.player-fill {
+    height: 100%;
+    background: #e85d26;
+    border-radius: 2px;
+    width: 42%;
+}
+.player-times {
+    display: flex;
+    justify-content: space-between;
+}
+.player-time {
+    font-size: 10px;
+    color: #000000;
+    letter-spacing: 0.03em;
+}
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 2px 0;
+}
+.player-btn {
+    font-size: 16px;
+    color: #1c1814;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.badge-card {
+    position: absolute;
+    top: 10%;
+    right: 1%;
+}
+.badge-mount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: -2px;
+}
+.badge-mount-top {
+    width: 12px;
+    height: 15px;
+    background: #8a7f77;
+    border-radius: 2px 2px 0 0;
+}
+.badge-mount-line {
+    width: 3px;
+    height: 22px;
+    background: #e85d26;
+    border-radius: 0 0 2px 2px;
+    opacity: 0.7;
+}
+.badge-card-body {
+    background: #f5f0e8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    min-width: 140px;
+
+    padding: 20px 18px 30px;
+    position: relative;
+}
+.badge-photo-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #e85d26;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.badge-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.badge-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+.badge-name {
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1c1814;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+}
+.badge-title {
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 9px;
+    color: #000000;
+    letter-spacing: 0.04em;
+    line-height: 1;
+}
+.badge-location {
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 7px;
+    color: #e85d26;
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+}
+.badge-divider {
+    width: 100%;
+    height: 5px;
+    margin-top: 2px;
+    opacity: 0.4;
+    background: repeating-linear-gradient(
+        90deg,
+        #1c1814 0 1px,
+        transparent 1px 3px,
+        #1c1814 3px 4px,
+        transparent 4px 6px,
+        #1c1814 6px 7px,
+        transparent 7px 10px,
+        #1c1814 10px 12px,
+        transparent 12px 15px,
+        #1c1814 15px 16px,
+        transparent 16px 18px
+    );
+}
+.badge-stamp {
+    position: absolute;
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 6px;
+    color: #e85d26;
+    opacity: 0.3;
+    rotate: -15deg;
+    letter-spacing: 0.12em;
+    border: 1px solid #e85d26;
+    padding: 1px 3px;
+    border-radius: 1px;
+    bottom: 32px;
+    right: 6px;
+    pointer-events: none;
+}
+.polaroid {
+    position: absolute;
+}
+.polaroid-card {
+    background: #f5f0e8;
+    padding: 5px 5px 18px;
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.35),
+        -1px 0 0 rgba(0, 200, 255, 0.04),
+        1px 0 0 rgba(255, 0, 100, 0.04);
+    border-radius: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.polaroid-pin {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #e85d26;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+.polaroid-img {
+    display: block;
+    width: 140px;
+    height: auto;
+    border-radius: 1px;
+}
+.polaroid-caption {
+    position: absolute;
+    bottom: 3px;
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 9px;
+    color: #1c1814;
+    letter-spacing: 0.04em;
+    opacity: 0.75;
+}
+.doodles {
+    position: absolute;
+    top: 55%;
+    right: 16%;
+}
+.doodles-text {
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 9px;
+    color: #000000;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+    white-space: nowrap;
+}
+.divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e85d26;
+    left: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+.tooltip {
+    position: absolute;
+    top: 70%;
+    padding: 1px 12px;
+    text-align: center;
+    border-radius: 8px;
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 11px;
+    background-color: #e85d26;
+    color: white;
+    pointer-events: none;
+    z-index: 11;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.cta-wrap {
+    position: absolute;
+    bottom: clamp(12px, 1.5vh, 20px);
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 12;
+    pointer-events: none;
+}
+.cta {
+    display: inline-block;
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #e85d26;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    pointer-events: auto;
+}
+.links {
+    position: absolute;
+    bottom: clamp(80px, 1vh, 120px);
+    right: clamp(24px, 3vw, 48px);
+    z-index: 13;
+    text-align: right;
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: clamp(11px, 0.9vw, 14px);
+    color: #ffffff;
+    mix-blend-mode: difference;
+    line-height: 1.8;
+    pointer-events: none;
+}
+.links-label {
+    color: #ffffff;
+
+    margin-right: 8px;
+}
+.links a {
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #e85d26;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    pointer-events: auto;
+    transition: opacity 0.2s;
+}
+.links a:hover {
+    opacity: 0.7;
+}
+.links-sep {
+    color: #ffffff;
+    margin: 0 8px;
+}
+.sneak {
+    position: fixed;
+    bottom: clamp(16px, 2vh, 32px);
+    left: clamp(16px, 2vw, 32px);
+    z-index: 100;
+    font-family: "Space Mono", "Courier New", monospace;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+.sneak.show {
+    opacity: 1;
+    pointer-events: auto;
+}
