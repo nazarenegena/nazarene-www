@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
+import Lenis from 'lenis'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-export const lenisInstance = { current: null as any }
+export const lenisInstance = { current: null as Lenis | null }
 const scrollListeners = new Set<(e: any) => void>()
 
 export function useSmoothScroll() {
@@ -11,29 +12,23 @@ export function useSmoothScroll() {
     if (hasInitialized.current) return
     hasInitialized.current = true
 
-    const init = async () => {
-      const Lenis = (await import('lenis')).default
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      })
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    })
 
-      lenisInstance.current = lenis
+    lenisInstance.current = lenis
 
-      lenis.on('scroll', (e: any) => {
-        scrollListeners.forEach(listener => listener(e))
-        ScrollTrigger.update()
-      })
+    lenis.on('scroll', (e: any) => {
+      scrollListeners.forEach(listener => listener(e))
+      try { ScrollTrigger.update() } catch {}
+    })
 
-      return () => {
-        lenis.destroy()
-        lenisInstance.current = null
-        scrollListeners.clear()
-      }
+    return () => {
+      lenis.destroy()
+      lenisInstance.current = null
+      scrollListeners.clear()
     }
-
-    const cleanup = init()
-    return () => { cleanup?.then(fn => fn()) }
   }, [])
 }
 

@@ -94,7 +94,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="projects-section bg-dot-grid bg-bg px-6 sm:px-12 pb-24 sm:pb-32 pt-12 sm:pt-16"
+      className="projects-section bg-dot-grid bg-bg px-6 sm:px-12 py-24 sm:py-32"
     >
       <div className="max-w-[1400px] mx-auto">
         <div className="about-frame">
@@ -108,7 +108,7 @@ export default function Projects() {
             <span className="flex-1 about-divider" />
           </div>
 
-          <div className="">
+          <div className="mb-2">
             <h2
               data-reveal
               className="about-heading-line about-headline text-[clamp(36px,3vw,72px)] leading-[0.9]"
