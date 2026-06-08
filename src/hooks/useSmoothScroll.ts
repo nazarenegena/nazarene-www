@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import Lenis from 'lenis'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -6,15 +6,11 @@ export const lenisInstance = { current: null as Lenis | null }
 const scrollListeners = new Set<(e: any) => void>()
 
 export function useSmoothScroll() {
-  const hasInitialized = useRef(false)
-
   useEffect(() => {
-    if (hasInitialized.current) return
-    hasInitialized.current = true
-
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      autoRaf: true,
     })
 
     lenisInstance.current = lenis
