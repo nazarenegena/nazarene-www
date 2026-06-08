@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CurlyLine from "./CurlyLine";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,8 @@ const projects = [
     year: "2024",
     href: "https://yuno.somethinglabs.io",
     cta: "explore the system →",
+    tags: ["React", "Design Tokens", "CLI Tooling"],
+    oneLiner: "A font-pairing engine with contrast-validated palettes",
   },
   {
     number: "02",
@@ -21,11 +24,15 @@ const projects = [
     year: "2025",
     href: "https://sahani.app",
     cta: "see it in action →",
+    tags: ["React", "UX Design", "Data Visualization"],
+    oneLiner: "A digital health platform rethinking the clinic experience",
   },
 ];
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
+
+  useScrollReveal();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -65,14 +72,14 @@ export default function Projects() {
       <div className="max-w-[1400px] mx-auto">
         <div className="about-frame">
           <div className="flex items-center gap-4 mb-10">
-            <span className="about-label font-mono text-[10px] tracking-[0.12em] text-accent uppercase shrink-0">
+            <span data-reveal className="about-label font-mono text-[10px] tracking-[0.12em] text-accent uppercase shrink-0">
               ✦ 02 //projects
             </span>
             <span className="flex-1 about-divider" />
           </div>
 
           <div className="mb-3">
-            <h2 className="about-heading-line about-headline text-[clamp(36px,6vw,72px)] leading-[0.9]">
+            <h2 data-reveal className="about-heading-line about-headline text-[clamp(36px,6vw,72px)] leading-[0.9]">
               Selected Works
             </h2>
 
@@ -108,11 +115,20 @@ export default function Projects() {
                   overflow: "hidden",
                 }}
               >
-                <div className="project-image-placeholder relative flex items-center justify-center bg-[#faf6f1]">
+                <div className="project-image-placeholder relative flex items-center justify-center bg-[#faf6f1] overflow-hidden">
                   <div className="project-arrow">↗</div>
                   <span className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase project-screenshot-text">
                     [project screenshot]
                   </span>
+                  <div className="project-overlay">
+                    <p className="project-overlay-text">{project.oneLiner}</p>
+                    <div className="project-overlay-tags">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="project-overlay-tag">{tag}</span>
+                      ))}
+                    </div>
+                    <span className="project-overlay-cta">{project.cta}</span>
+                  </div>
                 </div>
 
                 <div className="p-6">

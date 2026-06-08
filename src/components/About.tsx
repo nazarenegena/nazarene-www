@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CurlyLine from "./CurlyLine";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -108,6 +109,8 @@ const skillTilts = [-0.8, 0.5, -0.3, 1.0, -0.6, 0.4, -0.5];
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const [stats, setStats] = useState({ years: 0, companies: 0, systems: 0 });
+
+  useScrollReveal();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -416,7 +419,7 @@ export default function About() {
                 JavaScript engineer by training, designer by curiosity, and a
                 little bit of both by choice.
               </p>
-              <p className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4">
+              <p data-reveal className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4">
                 I've spent the last 5 years building interfaces that feel as
                 good as they look — working across startups and product teams,
                 writing the code and occasionally rearranging the pixels too.
@@ -424,13 +427,13 @@ export default function About() {
                 kind of work that lives at the intersection of logic and
                 aesthetics.
               </p>
-              <p className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4">
+              <p data-reveal className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4">
                 When I'm not pushing components around, I'm in Nairobi — hiking,
                 collecting anime, pressing flowers, and finding colour everywhere
                 I look. I think that curiosity is what makes me a better
                 engineer.
               </p>
-              <p className="font-mono text-[10px] text-accent tracking-[0.1em] mt-2 uppercase">
+              <p data-reveal className="font-mono text-[10px] text-accent tracking-[0.1em] mt-2 uppercase">
                 ✧ I'm currently open to frontend and design-adjacent roles where
                 I get to do both.
               </p>
@@ -477,15 +480,20 @@ export default function About() {
             ))}
           </div>
 
-          <div className="text-center mb-8">
-            <span className="font-mono text-[10px] text-accent tracking-[0.12em] uppercase">
-              ✦ 5+ years of shipping ✦
-            </span>
+          <div data-reveal className="ticker-container mb-8">
+            <div className="ticker-track">
+              <span className="ticker-text font-mono text-[10px] text-accent tracking-[0.12em] uppercase">
+                ✦ 5+ years of shipping ✦
+              </span>
+              <span className="ticker-text font-mono text-[10px] text-accent tracking-[0.12em] uppercase">
+                ✦ 5+ years of shipping ✦
+              </span>
+            </div>
           </div>
 
           <CurlyLine className="my-8" />
 
-          <div className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
+          <div data-reveal className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
             ✦ experience
           </div>
 
@@ -515,7 +523,7 @@ export default function About() {
 
           <CurlyLine className="my-8" />
 
-          <div className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
+          <div data-reveal className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
             ✦ skills
           </div>
 
@@ -561,7 +569,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="text-center mt-12">
+          <div data-reveal className="text-center mt-12">
             <span className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-4 block">
               ✦ resume
             </span>

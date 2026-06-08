@@ -1,5 +1,4 @@
 import Preloader from "./components/Preloader";
-import CustomCursor from "./components/CustomCursor";
 import TimeDisplay from "./components/TimeDisplay";
 import SplitHero from "./components/SplitHero";
 import ScrollProgress from "./components/ScrollProgress";
@@ -9,16 +8,17 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { useGsapScroll } from "./hooks/useGsapScroll";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
+import { useScrollReveal } from "./hooks/useScrollReveal";
 
 function App() {
   useSmoothScroll();
   useGsapScroll();
+  useScrollReveal();
 
   return (
     <div className="bg-bg text-fg min-h-screen">
       <Preloader />
       <SplitHero />
-      <CustomCursor />
       <ScrollProgress />
 
       <div className="fixed top-4 right-4 z-50" style={{ mixBlendMode: "difference" }}>
@@ -28,6 +28,17 @@ function App() {
       <div className="wrapperFirst">
         <About />
         <Projects />
+      </div>
+
+      <div className="ticker-container border-t border-accent/10 border-b border-accent/10">
+        <div className="ticker-track py-4">
+          <span className="ticker-text font-mono text-[10px] text-accent tracking-[0.12em] uppercase px-4">
+            available for work · nairobi · frontend · design · open to collab · javascript · react · design systems ·
+          </span>
+          <span className="ticker-text font-mono text-[10px] text-accent tracking-[0.12em] uppercase px-4">
+            available for work · nairobi · frontend · design · open to collab · javascript · react · design systems ·
+          </span>
+        </div>
       </div>
 
       <div className="wrapperSecond bg-surface/50">

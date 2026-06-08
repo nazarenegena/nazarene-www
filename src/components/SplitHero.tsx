@@ -15,16 +15,16 @@ const polaroids = [
     src: "/photos/sunset.jpg",
     caption: "sunset",
     rotate: 8,
-    top: "38%",
-    left: "4%",
+    top: "65%",
+    right: "45%",
     tooltip: "golden hour magic",
   },
   {
     src: "/photos/flowers.jpg",
     caption: "flowers",
-    rotate: -6,
-    top: "36%",
-    left: "14%",
+    rotate: -9,
+    top: "62%",
+    right: "35%",
     tooltip: "nature's art",
   },
   {
@@ -39,8 +39,8 @@ const polaroids = [
     src: "/photos/rose.jpg",
     caption: "rose",
     rotate: -6,
-    top: "6%",
-    left: "28%",
+    top: "18%",
+    left: "24%",
     tooltip: "this one smells nice",
   },
   {
@@ -55,8 +55,8 @@ const polaroids = [
     src: "/photos/white_flowers.jpg",
     caption: "sunflowers",
     rotate: 8,
-    top: "5%",
-    left: "18%",
+    top: "17%",
+    left: "14%",
     tooltip: "perfect lighting",
   },
   {
@@ -81,92 +81,6 @@ const terminalLines = [
   ["cat stack.txt", "Javascript / TypeScript / React.js / "],
   ["cat status.txt", "open to work ✦"],
 ];
-
-const shapes = [
-  [
-    18,
-    "28%",
-    "36%",
-    0,
-    <svg
-      key="0"
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M8 1 L15 8 L8 15 L1 8 Z"
-        stroke="#ffd93d"
-        strokeWidth="1.5"
-        fill="#ffd93d"
-        opacity="0.55"
-      />
-    </svg>,
-  ],
-  [
-    19,
-    "22%",
-    "28%",
-    "-6deg",
-    <svg
-      key="1"
-      width="18"
-      height="36"
-      viewBox="0 0 24 48"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M12 2L8 12l6 2-2 10"
-        stroke="#e85d26"
-        strokeWidth="1.5"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.45"
-      />
-      <path d="M10 12h4" stroke="#e85d26" strokeWidth="2" opacity="0.45" />
-    </svg>,
-  ],
-  [
-    20,
-    "22%",
-    "46%",
-    "4deg",
-    <svg
-      key="2"
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle
-        cx="10"
-        cy="10"
-        r="8"
-        stroke="#e85d26"
-        strokeWidth="1.5"
-        fill="none"
-        opacity="0.4"
-      />
-      <path
-        d="M2 10h16M10 2v16M5 5l10 10M15 5L5 15"
-        stroke="#e85d26"
-        strokeWidth="0.8"
-        fill="none"
-        opacity="0.25"
-      />
-    </svg>,
-  ],
-].map(([i, b, r, rot, svg]) => ({
-  idx: i as number,
-  bottom: b as string,
-  right: r as string,
-  rotate: rot as string,
-  svg,
-}));
 
 export default function SplitHero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -390,12 +304,14 @@ export default function SplitHero() {
       <div ref={heroRef} className="hero">
         <div ref={leftPanelRef} className="panel panel-light">
           <div className="badge badge-l">[at work]</div>
-          <div className="name">Nazarene Wanyaga</div>
-          <div className="sub">frontend engineer. design-obsessed developer.</div>
-          <p className="font-mono text-[11px] leading-[1.6] text-[#1c1814]/70 max-w-[420px] mb-4">
-            I started in code, wandered into design, and never quite came back.
+          <div className="name">Nazarene Wairimu</div>
+          <div className="sub">
+            frontend engineer. design-obsessed developer.
+          </div>
+          <p className="font-mono text-md leading-[1.6] max-w-[500px] mb-4 font-medium italic">
+            "I started in code, wandered into design, and never quite came back.
             Now I live somewhere in between — and I think that's my favourite
-            place to be.
+            place to be."
           </p>
           <div className="term">
             <div className="term-bar">
@@ -532,19 +448,6 @@ export default function SplitHero() {
             <span className="doodles-text">curious · building · exploring</span>
           </div>
 
-          {shapes.map((s) => (
-            <div
-              key={s.idx}
-              className="absolute"
-              style={{ bottom: s.bottom, right: s.right, rotate: s.rotate }}
-              ref={(el) => {
-                if (el) collageItemsRef.current[s.idx] = el;
-              }}
-            >
-              {s.svg}
-            </div>
-          ))}
-
           <svg
             className="absolute"
             style={{
@@ -593,19 +496,19 @@ export default function SplitHero() {
           <span className="links-label">not just a dev, here's proof →</span>
           <br />
           <a
-            href="https://github.com/nazarenegena"
+            href="https://www.instagram.com/designs_bynaz/"
             target="_blank"
             rel="noopener"
           >
-            GitHub
+            Instagram
           </a>
           <span className="links-sep">·</span>
           <a
-            href="https://www.linkedin.com/in/nazarene-wanyaga"
+            href="https://medium.com/@genarene96"
             target="_blank"
             rel="noopener"
           >
-            LinkedIn
+            Medium
           </a>
         </div>
       </div>

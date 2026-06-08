@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CurlyLine from "./CurlyLine";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +35,8 @@ const contacts = [
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
+
+  useScrollReveal();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -153,7 +156,7 @@ export default function Contact() {
       <div className="max-w-[1400px] mx-auto">
         <div className="about-frame">
           <div className="flex items-center gap-4 mb-10">
-            <span className="about-label font-mono text-[10px] tracking-[0.12em] text-accent uppercase shrink-0">
+            <span data-reveal className="about-label font-mono text-[10px] tracking-[0.12em] text-accent uppercase shrink-0">
               ✦ 03 //contact
             </span>
             <span className="flex-1 about-divider" />
