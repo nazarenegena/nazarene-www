@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plinth — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Open Sans',system-ui,sans-serif;
+      background:#F8FAFC;
+      color:#334155;
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+    }
+    .container{max-width:800px;margin:0 auto;padding:64px 24px 96px}
+
+    .back-btn{
+      position:fixed;top:20px;left:20px;z-index:100;
+      font-family:'Open Sans',system-ui,sans-serif;
+      font-size:12px;font-weight:600;color:#475569;
+      text-decoration:none;padding:6px 14px;
+      background:#fff;border:1px solid #CBD5E1;
+      border-radius:20px;transition:background 0.2s,box-shadow 0.2s;
+    }
+    .back-btn:hover{background:#F1F5F9;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+    @media(max-width:600px){.back-btn{top:12px;left:12px;font-size:11px;padding:4px 12px}}
+
+    a{color:#4F46E5;text-decoration:underline;text-underline-offset:2px}
+    a:hover{color:#4338CA}
+
+    h1,h2,h3{font-family:'Playfair Display',Georgia,serif;color:#0F172A;font-weight:600}
+    h1{
+      font-size:34px;line-height:1.2;margin-bottom:24px;
+      padding-bottom:14px;
+      border-bottom:2px solid #CBD5E1;
+    }
+    h1::after{
+      content:'';display:block;width:48px;height:3px;
+      background:#4F46E5;margin-top:14px;border-radius:2px;
+    }
+    h2{
+      font-size:22px;line-height:1.3;margin-top:44px;margin-bottom:14px;
+      padding-bottom:8px;border-bottom:1px solid #E2E8F0;
+    }
+    h2::after{
+      content:'';display:block;width:32px;height:2px;
+      background:#4F46E5;margin-top:8px;border-radius:2px;
+    }
+    h3{font-size:17px;line-height:1.3;margin-top:28px;margin-bottom:10px;color:#1E293B;font-weight:600}
+    p{font-size:14px;line-height:1.8;color:#475569;margin-bottom:16px}
+
+    .section{margin-bottom:56px}
+
+    /* Cover */
+    .cover{
+      text-align:center;padding:80px 24px 56px;
+      margin:-64px -24px 56px;
+      background:linear-gradient(180deg,#EEF2FF 0%,#F8FAFC 100%);
+      border-bottom:1px solid #CBD5E1;
+      position:relative;overflow:hidden;
+    }
+    .cover::before{
+      content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+      width:600px;height:600px;
+      background:radial-gradient(circle,rgba(79,70,229,0.04) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .plinth-shape{
+      display:flex;flex-direction:column;align-items:center;
+      margin-bottom:24px;position:relative;
+    }
+    .plinth-block{
+      width:120px;height:12px;background:#4F46E5;border-radius:2px;
+      margin-bottom:2px;opacity:0.3;
+    }
+    .plinth-block:nth-child(2){width:140px;opacity:0.5}
+    .plinth-block:nth-child(3){width:160px;opacity:0.7}
+    .plinth-block:nth-child(4){width:180px;height:16px;opacity:1;background:linear-gradient(90deg,#4F46E5,#6366F1)}
+    .plinth-wordmark{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:60px;font-weight:700;color:#0F172A;
+      line-height:1;letter-spacing:-0.02em;margin:24px 0 4px;
+    }
+    .plinth-wordmark span{color:#4F46E5}
+    .cover .subtitle{
+      font-family:'Inter',sans-serif;
+      font-size:13px;font-weight:500;color:#64748B;
+      text-transform:uppercase;letter-spacing:0.25em;margin-bottom:20px;
+    }
+    .cover .tagline{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:20px;font-style:italic;color:#4F46E5;
+      margin-bottom:6px;font-weight:500;
+    }
+    .cover .desc{
+      font-size:14px;color:#64748B;max-width:520px;margin:0 auto 24px;
+      line-height:1.7;
+    }
+    .pill-group{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:20px}
+    .pill{
+      display:inline-block;padding:4px 12px;border-radius:20px;
+      font-family:'Inter',sans-serif;font-size:10px;font-weight:600;
+      letter-spacing:0.04em;text-transform:uppercase;
+      background:#fff;color:#4F46E5;border:1px solid #CBD5E1;
+    }
+    .cover .meta{
+      font-size:11px;color:#94A3B8;letter-spacing:0.04em;
+      font-family:'Inter',sans-serif;
+    }
+    .cover hr{
+      border:none;border-top:1px solid #CBD5E1;
+      margin:36px auto 0;max-width:360px;
+    }
+
+    /* Pull quote */
+    .pull-quote{
+      margin:32px 0;padding:20px 28px;
+      text-align:center;
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:20px;font-style:italic;color:#4F46E5;
+      line-height:1.6;
+      position:relative;
+    }
+    .pull-quote::before{
+      content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+      width:60px;height:2px;background:linear-gradient(90deg,transparent,#4F46E5,transparent);
+    }
+    .pull-quote::after{
+      content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+      width:60px;height:2px;background:linear-gradient(90deg,transparent,#4F46E5,transparent);
+    }
+
+    /* Callout */
+    .callout{
+      margin:20px 0;padding:16px 20px;
+      background:#F1F5F9;
+      border-left:3px solid #4F46E5;
+      border-radius:6px;
+      font-size:13px;line-height:1.7;color:#475569;
+    }
+    .callout strong{
+      color:#0F172A;display:block;margin-bottom:2px;
+      font-size:10px;text-transform:uppercase;letter-spacing:0.06em;
+    }
+
+    /* Tables */
+    table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;border-radius:6px;overflow:hidden}
+    th{
+      text-align:left;padding:10px 12px;font-size:10px;
+      text-transform:uppercase;letter-spacing:0.06em;
+      background:#F1F5F9;color:#475569;font-weight:600;
+      border-bottom:2px solid #CBD5E1;
+    }
+    td{padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#334155}
+    tr:last-child td{border-bottom:none}
+    tr:nth-child(even) td{background:#F8FAFC}
+    td:first-child{font-weight:600;color:#0F172A}
+
+    .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#4F46E5;font-weight:500}
+
+    /* Token swatch grid */
+    .swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:16px 0}
+    .swatch-card{
+      background:#fff;border:1px solid #E2E8F0;border-radius:8px;
+      overflow:hidden;transition:box-shadow 0.2s;
+    }
+    .swatch-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+    .swatch-bar{height:56px}
+    .swatch-body{padding:10px 12px}
+    .swatch-body .path{font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#4F46E5;display:block;font-weight:600}
+    .swatch-body .val{font-size:10px;color:#94A3B8;display:block;margin-top:2px}
+    .swatch-body .use{font-size:9px;color:#94A3B8;display:block;margin-top:2px;line-height:1.4}
+
+    /* Semantic color pair */
+    .semantic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:16px 0}
+    .semantic-card{
+      background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:14px;
+    }
+    .semantic-card .name{font-size:11px;font-weight:700;color:#0F172A;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em}
+    .semantic-card .pair{display:flex;gap:8px;align-items:center}
+    .semantic-card .chip{display:inline-block;padding:8px 14px;border-radius:6px;font-family:ui-monospace,monospace;font-size:10px;font-weight:600}
+    .semantic-card .label{font-size:9px;color:#94A3B8;display:block;margin-bottom:2px}
+
+    /* Architecture diagram */
+    .arch-diagram{margin:24px 0}
+    .arch-layer{
+      padding:18px 20px;border-radius:8px;margin-bottom:6px;
+      border:1px solid #E2E8F0;
+      position:relative;
+    }
+    .arch-layer .arch-title{font-size:12px;font-weight:700;color:#0F172A;text-transform:uppercase;letter-spacing:0.06em}
+    .arch-layer .arch-desc{font-size:12px;color:#64748B;margin-top:2px}
+    .arch-layer .arch-tag{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:9px;padding:2px 8px;border-radius:10px;background:#EEF2FF;color:#4F46E5;font-weight:600;text-transform:uppercase;letter-spacing:0.04em}
+    .arch-primitive{background:#FAFAFA;border-left:3px solid #94A3B8}
+    .arch-semantic{background:#EEF2FF;border-left:3px solid #4F46E5}
+    .arch-component{background:#FAFAFA;border-left:3px solid #6366F1}
+    .arch-connector{display:flex;justify-content:center;padding:2px 0}
+    .arch-connector svg{width:16px;height:16px}
+
+    /* Chain / flow */
+    .chain{list-style:none;padding:0;margin:16px 0}
+    .chain li{
+      padding:14px 18px;margin-bottom:6px;
+      background:#fff;border:1px solid #E2E8F0;border-radius:6px;
+      font-size:13px;line-height:1.5;color:#475569;
+      display:flex;align-items:center;gap:8px;
+    }
+    .chain li .step{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:22px;height:22px;border-radius:50%;
+      background:#4F46E5;color:#fff;
+      font-size:11px;font-weight:700;flex-shrink:0;
+    }
+    .chain li .arrow{margin:0 4px;color:#94A3B8}
+
+    /* Type specimen */
+    .type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin:16px 0}
+    .type-card{
+      background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:16px;
+    }
+    .type-card .label{font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#94A3B8;margin-bottom:6px;font-weight:600}
+    .type-card .token{font-family:ui-monospace,monospace;font-size:10px;color:#4F46E5;margin-bottom:8px;display:block}
+    .type-card .sample{color:#0F172A;line-height:1.2}
+    .t-display{font-family:'Playfair Display',serif;font-size:36px;font-weight:600;line-height:1.1}
+    .t-h1{font-family:'Playfair Display',serif;font-size:30px;font-weight:500;line-height:1.2}
+    .t-h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;line-height:1.2}
+    .t-body-lg{font-family:'Open Sans',sans-serif;font-size:18px;font-weight:400;line-height:1.6}
+    .t-body{font-family:'Open Sans',sans-serif;font-size:16px;font-weight:400;line-height:1.7}
+    .t-body-sm{font-family:'Open Sans',sans-serif;font-size:14px;font-weight:400;line-height:1.5}
+    .t-caption{font-family:'Open Sans',sans-serif;font-size:12px;font-weight:300;line-height:1.5;color:#64748B}
+
+    /* Component demos */
+    .demo-section{margin:20px 0}
+    .demo-section .demo-label{font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:#94A3B8;margin-bottom:10px;font-weight:600}
+    .btn-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      font-family:'Inter',sans-serif;font-size:12px;font-weight:600;
+      padding:8px 18px;border-radius:24px;border:none;
+      cursor:default;text-decoration:none;line-height:1;
+    }
+    .btn-solid{background:#4F46E5;color:#fff}
+    .btn-outline{background:transparent;color:#4F46E5;border:1.5px solid #4F46E5}
+    .btn-ghost{background:transparent;color:#4F46E5;text-decoration:underline;text-underline-offset:3px}
+    .btn-disabled{background:#CBD5E1;color:#94A3B8}
+    .btn-danger{background:#E11D48;color:#fff}
+
+    .badge-row{display:flex;flex-wrap:wrap;gap:6px}
+    .badge{
+      display:inline-block;font-family:'Inter',sans-serif;font-size:10px;font-weight:600;
+      padding:3px 8px;border-radius:4px;line-height:1.4;
+    }
+    .badge-solid{background:#4F46E5;color:#fff}
+    .badge-soft{background:#EEF2FF;color:#4F46E5}
+    .badge-outline{background:transparent;color:#4F46E5;border:1px solid #4F46E5}
+    .badge-neutral{background:#F1F5F9;color:#475569}
+    .badge-success{background:#ECFDF5;color:#059669}
+    .badge-warning{background:#FFFBEB;color:#D97706}
+
+    .card-demo{
+      background:#fff;border:0.5px solid #E2E8F0;border-radius:12px;
+      padding:24px;max-width:300px;
+    }
+    .card-demo .card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:500;color:#0F172A}
+    .card-demo .card-body{font-size:13px;color:#64748B;margin-top:4px;line-height:1.5}
+
+    .toggle-row{display:flex;gap:20px;align-items:center}
+    .toggle{width:40px;height:24px;border-radius:12px;position:relative;cursor:default}
+    .toggle-on{background:#4F46E5}
+    .toggle-off{background:#CBD5E1}
+    .toggle-thumb{
+      width:20px;height:20px;border-radius:50%;background:#fff;
+      position:absolute;top:2px;transition:none;
+      box-shadow:0 1px 3px rgba(0,0,0,0.15);
+    }
+    .toggle-on .toggle-thumb{left:18px}
+    .toggle-off .toggle-thumb{left:2px}
+
+    .demo-input{
+      padding:10px 14px;border:1px solid #CBD5E1;border-radius:8px;
+      font-family:'Inter',sans-serif;font-size:13px;color:#0F172A;
+      background:#fff;width:100%;max-width:300px;outline:none;display:block;
+    }
+    .demo-input:focus{border-color:#4F46E5;box-shadow:0 0 0 3px rgba(79,70,229,0.1)}
+    .demo-input.error{border-color:#E11D48;background:#FFF1F2}
+    .input-label{font-size:10px;text-transform:uppercase;color:#64748B;letter-spacing:0.06em;margin-bottom:4px;display:block;font-weight:600}
+
+    /* Principle cards */
+    .principle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:16px 0}
+    .principle-card{
+      background:#fff;border:1px solid #E2E8F0;border-radius:8px;
+      padding:18px;transition:box-shadow 0.2s;
+    }
+    .principle-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+    .principle-card .num{
+      font-family:'Playfair Display',serif;font-size:28px;font-weight:700;
+      color:#4F46E5;line-height:1;margin-bottom:6px;
+    }
+    .principle-card h3{font-size:14px;margin-bottom:4px;color:#0F172A;margin-top:0}
+    .principle-card p{font-size:12px;color:#64748B;line-height:1.6;margin-bottom:0}
+
+    /* Roadmap */
+    .road-list{margin:12px 0;padding:0;list-style:none}
+    .road-list li{
+      padding:8px 0 8px 16px;position:relative;
+      font-size:13px;line-height:1.5;color:#475569;border-bottom:1px solid #F1F5F9;
+    }
+    .road-list li:last-child{border-bottom:none}
+    .road-list li::before{
+      content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+      width:5px;height:5px;border-radius:50%;background:#4F46E5;
+    }
+
+    hr{border:none;border-top:1px solid #CBD5E1;margin:32px 0}
+
+    .footer-text{text-align:center;font-size:11px;color:#94A3B8;margin-top:48px;font-family:'Inter',sans-serif}
+
+    @media(max-width:600px){
+      .cover{padding:56px 16px 40px;margin:-64px -16px 40px}
+      .plinth-wordmark{font-size:40px}
+      .swatch-grid{grid-template-columns:repeat(2,1fr)}
+      .semantic-grid{grid-template-columns:1fr}
+      .principle-grid{grid-template-columns:1fr}
+      .type-grid{grid-template-columns:1fr}
+      .arch-layer .arch-tag{position:static;transform:none;display:inline-block;margin-top:4px}
+      .chain li{flex-wrap:wrap}
+    }
+  </style>
+</head>
+<body>
+  <a href="/?section=projects" class="back-btn">← wander home</a>
+
+  <div class="cover">
+    <div class="plinth-shape">
+      <div class="plinth-block"></div>
+      <div class="plinth-block"></div>
+      <div class="plinth-block"></div>
+      <div class="plinth-block"></div>
+    </div>
+    <div class="plinth-wordmark">Pl<span>i</span>nth</div>
+    <div class="subtitle">Design System</div>
+    <p class="tagline">"The base everything stands on."</p>
+    <p class="desc">A reusable, token-driven UI foundation for building consistent product interfaces — engineered to be re-themed in minutes, not days.</p>
+    <div class="pill-group">
+      <span class="pill">Token-First</span>
+      <span class="pill">Minimal</span>
+      <span class="pill">Variant-Complete</span>
+      <span class="pill">Theme-Ready</span>
+    </div>
+    <p class="meta">Version 1.0 &middot; Clean &amp; Minimal &middot; Tailwind-aligned &middot; Figma + Code</p>
+    <hr />
+  </div>
+
+  <div class="container">
+
+    <!-- 1. The Name -->
+    <div class="section">
+      <h1>1. The Name — Plinth</h1>
+
+      <h2>1.1 Etymology</h2>
+      <p>The word <em>plinth</em> comes from the Greek <em>plinthos</em> and Latin <em>plinthus</em> — meaning a flat slab or brick. In classical architecture, the plinth is the lowest, widest part of a column base. It makes contact with the ground, distributes the load, and anchors everything above it. It is not the most visible part of a building. It is often overlooked. But without it, nothing stands straight.</p>
+
+      <h2>1.2 Why This Name for a Design System</h2>
+      <p>This design system was built with a specific purpose: to serve as the foundation from which other design systems can be created. Not just a collection of components, but a base layer — tokens, structure, naming conventions, and component architecture — that a designer or engineer can take and re-theme into an entirely new brand identity by changing a handful of values. That is exactly what a plinth does architecturally.</p>
+
+      <table>
+        <tr><th>Architectural meaning</th><th>Design system parallel</th></tr>
+        <tr><td>Lowest structural layer</td><td>Token layer — the raw values everything else references</td></tr>
+        <tr><td>Distributes load evenly</td><td>Semantic tokens distribute meaning across all components</td></tr>
+        <tr><td>Invisible when done right</td><td>A good design system disappears — users notice the product, not the system</td></tr>
+        <tr><td>Universal — works under any column style</td><td>Plinth is theme-agnostic — works under any brand</td></tr>
+        <tr><td>Built once, used permanently</td><td>Built once, re-themed endlessly</td></tr>
+      </table>
+
+      <h2>1.3 The Design Engineer Perspective</h2>
+      <p>Naming a design system is an act of infrastructure thinking. It signals intent to every person who will use it — designers, engineers, product managers — and it sets expectations about how the system should be treated. A name like <em>Plinth</em> says: this is not a pretty collection of buttons. This is the structural layer your product sits on. It demands care, precision, and respect for the people who will build on top of it.</p>
+      <p>Plinth operates at the intersection of visual design and frontend engineering. Every decision — from the three-layer token architecture to the variant-complete component states — is made with both the Figma canvas and the code editor in mind. The system is infrastructure, not decoration. Infrastructure with craft.</p>
+
+      <div class="pull-quote">"The plinth is the base everything stands on. Remove it and the structure loses its footing."</div>
+    </div>
+
+    <!-- 2. The Problem -->
+    <div class="section">
+      <h1>2. The Problem Plinth Solves</h1>
+
+      <h2>2.1 The Rebranding Problem</h2>
+      <p>Most design systems are built for one brand. Everything — colors, typography, spacing, component styles — is hardcoded in terms of that single brand identity. When a company rebrands, the work starts from scratch. Colors are changed manually across hundreds of components. Design files are updated piece by piece. Engineers search through codebases replacing hex values. The process takes months and introduces inconsistency at every step.</p>
+
+      <div class="callout"><strong>NOTE</strong>Plinth's three-collection token architecture — Primitives → Semantic → Component — means that a full rebrand requires changing fewer than 10 token values. Every component updates automatically.</div>
+
+      <h2>2.2 The Design-to-Code Gap</h2>
+      <p>The gap between Figma and code is a persistent source of friction in product development. When tokens are not shared between design and engineering, developers interpret designs and make their own decisions. Drift accumulates. The button in the design file is not exactly the button in the browser. Over time, small discrepancies compound into visible inconsistency, eroding trust between designers and engineers and degrading the user experience.</p>
+      <p>Plinth closes this gap by making the token structure identical in Figma Variables and in a JSON token file that maps directly to CSS custom properties. What you see in Figma is what you get in code. No interpretation layer. No drift.</p>
+
+      <h2>2.3 The Inconsistency Problem</h2>
+      <p>Without a system, individual decisions compound into visual inconsistency across a product over time. One designer uses a 12px corner radius. Another uses 8px. One engineer picks <span class="mono">#4F46E5</span> for a primary action. Another picks <span class="mono">#4338CA</span> because it looked better in context. These are not malicious decisions — they are the natural result of working without shared constraints.</p>
+      <p>Plinth makes the right decision the easy decision. Token names encode intent. Component variants cover every state. Consistency is the default, not the exception.</p>
+    </div>
+
+    <!-- 3. Design Principles -->
+    <div class="section">
+      <h1>3. Design Principles</h1>
+      <p>These are not aesthetic preferences. They are structural decisions. Every component, token, and pattern in Plinth exists because it was required by one or more of these principles. If something in the system does not satisfy at least one principle, it does not belong.</p>
+
+      <div class="principle-grid">
+        <div class="principle-card">
+          <div class="num">01</div>
+          <h3>Token-First</h3>
+          <p>Every visual decision traces back to a named token. No raw hex values, no hardcoded pixel numbers without token references in components.</p>
+        </div>
+        <div class="principle-card">
+          <div class="num">02</div>
+          <h3>Minimal by Default</h3>
+          <p>No decorative opinions. No gradients. No shadows beyond functional elevation. The minimal base is the easiest to theme.</p>
+        </div>
+        <div class="principle-card">
+          <div class="num">03</div>
+          <h3>Variant-Complete</h3>
+          <p>Every interactive state is modelled: hover, active, focus, disabled, loading, error. Nothing is left to interpretation.</p>
+        </div>
+        <div class="principle-card">
+          <div class="num">04</div>
+          <h3>Composable</h3>
+          <p>Atomic hierarchy — Atoms → Molecules → Organisms. Nothing built in isolation from the system.</p>
+        </div>
+        <div class="principle-card">
+          <div class="num">05</div>
+          <h3>Theme-Ready</h3>
+          <p>The entire system re-themes by changing six color token values. Six values. One new identity.</p>
+        </div>
+      </div>
+
+      <div class="pull-quote">"Six token changes. One entirely new brand identity."</div>
+    </div>
+
+    <!-- 4. System Architecture -->
+    <div class="section">
+      <h1>4. System Architecture</h1>
+
+      <h2>4.1 The Three Token Layers</h2>
+      <p>Plinth's architecture is built around three token collections, each with a distinct purpose and strict rules about what can reference it. This separation is what makes re-theming possible without touching a single component.</p>
+
+      <div class="arch-diagram">
+        <div class="arch-layer arch-component">
+          <div class="arch-title">Component Layer</div>
+          <div class="arch-desc">Component-scoped tokens. Decouples components from global semantic changes.</div>
+          <span class="arch-tag">Layer 3</span>
+        </div>
+        <div class="arch-connector">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v10M4 8l4 4 4-4" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="arch-layer arch-semantic">
+          <div class="arch-title">Semantic Layer</div>
+          <div class="arch-desc">Meaning-driven aliases. Has Light and Dark modes. <strong>Edit this layer to re-theme.</strong></div>
+          <span class="arch-tag">Layer 2</span>
+        </div>
+        <div class="arch-connector">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v10M4 8l4 4 4-4" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="arch-layer arch-primitive">
+          <div class="arch-title">Primitives Layer</div>
+          <div class="arch-desc">Raw values only. Hex codes, px numbers. Never referenced directly by components.</div>
+          <span class="arch-tag">Layer 1</span>
+        </div>
+      </div>
+
+      <h2>4.2 How Re-Theming Works</h2>
+      <p>The chain of references is explicit, traceable, and designed to be changed at a single point:</p>
+
+      <ul class="chain">
+        <li><span class="step">1</span> Button fill → references <span class="mono">Component/button/bg/solid</span></li>
+        <li><span class="step">2</span> <span class="mono">Component/button/bg/solid</span> → references <span class="mono">Semantic/color/primary</span></li>
+        <li><span class="step">3</span> <span class="mono">Semantic/color/primary</span> → references <span class="mono">Primitives/color/brand/500</span></li>
+        <li><span class="step">4</span> <span class="mono">Primitives/color/brand/500</span> → holds the raw hex value <span class="mono">#4F46E5</span></li>
+      </ul>
+
+      <p>To re-theme, only step 3 changes. The Semantic layer remaps to a different primitive, and every component updates instantly.</p>
+
+      <h2>4.3 Figma File Structure</h2>
+      <table>
+        <tr><th>Page</th><th>Purpose</th><th>Contents</th></tr>
+        <tr><td>🎨 Tokens</td><td>Design tokens only</td><td>Color, type, spacing, radii, shadows</td></tr>
+        <tr><td>⚛ Atoms</td><td>Base-level components</td><td>Buttons, inputs, badges, avatars, icons</td></tr>
+        <tr><td>🧩 Molecules</td><td>Composed components</td><td>Cards, form groups, alerts, toasts</td></tr>
+        <tr><td>🏗 Organisms</td><td>Layout sections</td><td>Navbar, sidebar, hero, data tables</td></tr>
+        <tr><td>📖 Docs</td><td>Usage guidelines</td><td>Usage notes, do/don't pairs, spacing rules</td></tr>
+        <tr><td>🎭 Playground</td><td>Scratch space</td><td>Theme testing, composition drafts</td></tr>
+      </table>
+    </div>
+
+    <!-- 5. Token System -->
+    <div class="section">
+      <h1>5. Token System</h1>
+      <p>Tokens are the vocabulary of Plinth. Every visual decision in the system is expressed as a named, scoped, typed value. This section documents every token collection shipped with Plinth v1.</p>
+
+      <h2>5.1 Color — Brand Scale</h2>
+      <div class="swatch-grid">
+        <div class="swatch-card"><div class="swatch-bar" style="background:#EEF2FF"></div><div class="swatch-body"><span class="path">color/brand/50</span><span class="val">#EEF2FF</span><span class="use">Tinted backgrounds, badge fills</span></div></div>
+        <div class="swatch-card"><div class="swatch-bar" style="background:#A5B4FC"></div><div class="swatch-body"><span class="path">color/brand/300</span><span class="val">#A5B4FC</span><span class="use">Focus rings, light accents</span></div></div>
+        <div class="swatch-card"><div class="swatch-bar" style="background:#4F46E5"></div><div class="swatch-body"><span class="path">color/brand/500</span><span class="val">#4F46E5</span><span class="use">Primary actions, links, key UI</span></div></div>
+        <div class="swatch-card"><div class="swatch-bar" style="background:#4338CA"></div><div class="swatch-body"><span class="path">color/brand/600</span><span class="val">#4338CA</span><span class="use">Hover states on primary elements</span></div></div>
+        <div class="swatch-card"><div class="swatch-bar" style="background:#1E1B4B"></div><div class="swatch-body"><span class="path" style="color:#A5B4FC">color/brand/900</span><span class="val" style="color:#94A3B8">#1E1B4B</span><span class="use" style="color:#94A3B8">Dark fills, text on brand backgrounds</span></div></div>
+      </div>
+
+      <h2>5.2 Color — Semantic</h2>
+      <div class="semantic-grid">
+        <div class="semantic-card"><div class="name">Success</div><div class="pair"><span class="chip" style="background:#ECFDF5;color:#059669">#ECFDF5</span><span class="chip" style="background:#059669;color:#fff">#059669</span></div></div>
+        <div class="semantic-card"><div class="name">Warning</div><div class="pair"><span class="chip" style="background:#FFFBEB;color:#D97706">#FFFBEB</span><span class="chip" style="background:#D97706;color:#fff">#D97706</span></div></div>
+        <div class="semantic-card"><div class="name">Error</div><div class="pair"><span class="chip" style="background:#FFF1F2;color:#E11D48">#FFF1F2</span><span class="chip" style="background:#E11D48;color:#fff">#E11D48</span></div></div>
+        <div class="semantic-card"><div class="name">Info</div><div class="pair"><span class="chip" style="background:#EFF6FF;color:#2563EB">#EFF6FF</span><span class="chip" style="background:#2563EB;color:#fff">#2563EB</span></div></div>
+      </div>
+
+      <h2>5.3 Typography Scale</h2>
+      <div class="type-grid">
+        <div class="type-card"><span class="label">Display / 2xl</span><span class="token">type/display/2xl</span><div class="t-display sample">The quick brown fox</div></div>
+        <div class="type-card"><span class="label">Heading / h1</span><span class="token">type/heading/h1</span><div class="t-h1 sample">The quick brown fox</div></div>
+        <div class="type-card"><span class="label">Heading / h2</span><span class="token">type/heading/h2</span><div class="t-h2 sample">The quick brown fox</div></div>
+        <div class="type-card"><span class="label">Body / lg</span><span class="token">type/body/lg</span><div class="t-body-lg sample">The quick brown fox jumps over the lazy dog. Warm tones, generous space.</div></div>
+        <div class="type-card"><span class="label">Body / base</span><span class="token">type/body/base</span><div class="t-body sample">The quick brown fox jumps over the lazy dog. Warm tones, generous whitespace, never crowded.</div></div>
+        <div class="type-card"><span class="label">Body / sm</span><span class="token">type/body/sm</span><div class="t-body-sm sample">The quick brown fox jumps over the lazy dog. Labels, helper text, secondary info.</div></div>
+        <div class="type-card"><span class="label">Caption / xs</span><span class="token">type/body/xs</span><div class="t-caption sample">The quick brown fox jumps over the lazy dog. Captions, metadata, timestamps.</div></div>
+      </div>
+
+      <h2>5.4 Spacing</h2>
+      <p>Spacing follows a 4px base grid aligned to Tailwind CSS. Every spacing token is a multiple of 4, ensuring components align consistently across every breakpoint.</p>
+      <table>
+        <tr><th>Token</th><th>Value</th><th></th><th>Token</th><th>Value</th></tr>
+        <tr><td><span class="mono">spacing/1</span></td><td>4px</td><td></td><td><span class="mono">spacing/8</span></td><td>32px</td></tr>
+        <tr><td><span class="mono">spacing/2</span></td><td>8px</td><td></td><td><span class="mono">spacing/10</span></td><td>40px</td></tr>
+        <tr><td><span class="mono">spacing/3</span></td><td>12px</td><td></td><td><span class="mono">spacing/12</span></td><td>48px</td></tr>
+        <tr><td><span class="mono">spacing/4</span></td><td>16px</td><td></td><td><span class="mono">spacing/14</span></td><td>56px</td></tr>
+        <tr><td><span class="mono">spacing/6</span></td><td>24px</td><td></td><td><span class="mono">spacing/16</span></td><td>64px</td></tr>
+      </table>
+    </div>
+
+    <!-- 6. Core Components -->
+    <div class="section">
+      <h1>6. Core Components</h1>
+      <p>Plinth v1 ships with eight core components. Each is token-driven, variant-complete, and structured so that the Figma component API maps directly to the code implementation. No translation layer. No drift.</p>
+
+      <h2>6.1 Button</h2>
+      <div class="demo-section">
+        <div class="demo-label">Rendered with Plinth tokens</div>
+        <div class="btn-row">
+          <span class="btn btn-solid">Solid</span>
+          <span class="btn btn-outline">Outline</span>
+          <span class="btn btn-ghost">Ghost</span>
+          <span class="btn btn-disabled">Disabled</span>
+          <span class="btn btn-danger">Danger</span>
+        </div>
+      </div>
+      <table>
+        <tr><th>Property</th><th>Values</th></tr>
+        <tr><td>Variant</td><td>solid &middot; outline &middot; ghost &middot; link &middot; destructive</td></tr>
+        <tr><td>Size</td><td>xs &middot; sm &middot; md &middot; lg &middot; xl</td></tr>
+        <tr><td>State</td><td>default &middot; hover &middot; active &middot; focus &middot; disabled &middot; loading</td></tr>
+        <tr><td>Icon</td><td>none &middot; left &middot; right</td></tr>
+      </table>
+      <table>
+        <tr><th>Layer</th><th>Property</th><th>Token</th></tr>
+        <tr><td>container</td><td>Fill — solid</td><td><span class="mono">Component/button/bg/solid</span></td></tr>
+        <tr><td>container</td><td>Fill — hover</td><td><span class="mono">Component/button/bg/solid-hover</span></td></tr>
+        <tr><td>container</td><td>Stroke — outline</td><td><span class="mono">Component/button/border/outline</span></td></tr>
+        <tr><td>container</td><td>Focus ring</td><td><span class="mono">Primitives/color/brand/300</span> — 3px outside</td></tr>
+        <tr><td>label</td><td>Color — solid</td><td><span class="mono">Component/button/text/solid</span></td></tr>
+        <tr><td>label</td><td>Font</td><td>Inter &middot; 14px &middot; Semi Bold</td></tr>
+      </table>
+      <table>
+        <tr><th>Size</th><th>Height</th><th>Padding Y</th><th>Padding X</th><th>Font</th></tr>
+        <tr><td>xs</td><td>28px</td><td>6px</td><td>10px</td><td>12px</td></tr>
+        <tr><td>sm</td><td>32px</td><td>8px</td><td>12px</td><td>12px</td></tr>
+        <tr><td>md</td><td>40px</td><td>10px</td><td>16px</td><td>14px</td></tr>
+        <tr><td>lg</td><td>44px</td><td>12px</td><td>20px</td><td>16px</td></tr>
+        <tr><td>xl</td><td>52px</td><td>14px</td><td>24px</td><td>18px</td></tr>
+      </table>
+
+      <h2>6.2 Input Field</h2>
+      <div class="demo-section">
+        <div class="demo-label">Rendered with Plinth tokens</div>
+        <label class="input-label">Label</label>
+        <input class="demo-input" type="text" placeholder="Placeholder text" value="" readonly />
+        <div style="height:10px"></div>
+        <label class="input-label" style="color:#E11D48">Label — Error State</label>
+        <input class="demo-input error" type="text" value="Invalid input" readonly />
+      </div>
+      <table>
+        <tr><th>Property</th><th>Values</th></tr>
+        <tr><td>State</td><td>empty &middot; filled &middot; focused &middot; error &middot; success &middot; disabled</td></tr>
+        <tr><td>Has Label</td><td>true &middot; false</td></tr>
+        <tr><td>Has Helper</td><td>true &middot; false</td></tr>
+        <tr><td>Icon</td><td>none &middot; left &middot; right</td></tr>
+      </table>
+
+      <h2>6.3 Badge / Tag</h2>
+      <div class="demo-section">
+        <div class="demo-label">Rendered with Plinth tokens</div>
+        <div class="badge-row">
+          <span class="badge badge-solid">solid</span>
+          <span class="badge badge-soft">soft</span>
+          <span class="badge badge-outline">outline</span>
+          <span class="badge badge-solid badge-success">success</span>
+          <span class="badge badge-solid badge-warning">warning</span>
+          <span class="badge badge-neutral">neutral</span>
+        </div>
+      </div>
+      <table>
+        <tr><th>Property</th><th>Values</th></tr>
+        <tr><td>Variant</td><td>solid &middot; soft &middot; outline</td></tr>
+        <tr><td>Color</td><td>primary &middot; neutral &middot; success &middot; warning &middot; error</td></tr>
+        <tr><td>Size</td><td>sm &middot; md</td></tr>
+        <tr><td>Props</td><td>dot &middot; icon-left &middot; dismissible</td></tr>
+      </table>
+
+      <h2>6.4 Card</h2>
+      <div class="demo-section">
+        <div class="demo-label">Rendered with Plinth tokens</div>
+        <div class="card-demo">
+          <div class="card-title">Card Title</div>
+          <div class="card-body">Supporting text or metadata goes here. Cards use <span class="mono">radius/lg</span> and <span class="mono">spacing/6</span>.</div>
+        </div>
+      </div>
+      <table>
+        <tr><th>Property</th><th>Values</th></tr>
+        <tr><td>Variant</td><td>flat &middot; elevated &middot; outlined &middot; interactive</td></tr>
+        <tr><td>Fill</td><td><span class="mono">Component/card/bg</span> → <span class="mono">Semantic/surface/default</span></td></tr>
+        <tr><td>Border</td><td><span class="mono">Component/card/border</span> → <span class="mono">Semantic/border/default</span></td></tr>
+        <tr><td>Radius</td><td><span class="mono">Component/card/radius</span> → 12px</td></tr>
+        <tr><td>Padding</td><td><span class="mono">Component/card/padding</span> → <span class="mono">spacing/6</span> (24px)</td></tr>
+      </table>
+
+      <h2>6.5 Toggle</h2>
+      <div class="demo-section">
+        <div class="demo-label">Rendered with Plinth tokens</div>
+        <div class="toggle-row">
+          <div class="toggle toggle-on"><div class="toggle-thumb"></div></div>
+          <span style="font-size:12px;color:#475569">On</span>
+          <div class="toggle toggle-off"><div class="toggle-thumb"></div></div>
+          <span style="font-size:12px;color:#475569">Off</span>
+        </div>
+      </div>
+
+      <h2>6.6 Additional Components</h2>
+      <table>
+        <tr><th>Component</th><th>Key Variants / Notes</th></tr>
+        <tr><td>Avatar</td><td>image &middot; initials &middot; icon &middot; placeholder — xs to 2xl — optional status dot</td></tr>
+        <tr><td>Checkbox</td><td>unchecked &middot; checked &middot; indeterminate &middot; disabled — 16×16 with <span class="mono">radius/sm</span></td></tr>
+        <tr><td>Radio</td><td>unselected &middot; selected &middot; disabled — 16×16 circle with inner dot</td></tr>
+        <tr><td>Alert</td><td>info &middot; success &middot; warning &middot; error — subtle &middot; solid &middot; outline</td></tr>
+        <tr><td>Navbar</td><td>light &middot; dark &middot; transparent — desktop + mobile — 64px height</td></tr>
+      </table>
+    </div>
+
+    <!-- 7. Re-Theming Guide -->
+    <div class="section">
+      <h1>7. Re-Theming Guide</h1>
+
+      <div class="pull-quote">"One system. Infinite brands. The base never changes — only the palette does."</div>
+
+      <h2>7.1 The Six Token Change</h2>
+      <p>To create a new brand from Plinth, you change exactly six Semantic tokens. Fill in your brand's values below:</p>
+      <table>
+        <tr><th>Semantic Token</th><th>Default (Indigo)</th><th>Your Brand Value</th></tr>
+        <tr><td><span class="mono">color/primary/50</span></td><td><span class="mono">#EEF2FF</span></td><td>___________</td></tr>
+        <tr><td><span class="mono">color/primary/300</span></td><td><span class="mono">#A5B4FC</span></td><td>___________</td></tr>
+        <tr><td><span class="mono">color/primary/500</span></td><td><span class="mono">#4F46E5</span></td><td>___________</td></tr>
+        <tr><td><span class="mono">color/primary/600</span></td><td><span class="mono">#4338CA</span></td><td>___________</td></tr>
+        <tr><td><span class="mono">color/primary/700</span></td><td><span class="mono">#3730A3</span></td><td>___________</td></tr>
+        <tr><td><span class="mono">color/primary/900</span></td><td><span class="mono">#1E1B4B</span></td><td>___________</td></tr>
+      </table>
+
+      <h2>7.2 Optional Brand Adjustments</h2>
+      <ul class="road-list">
+        <li><strong>Corner radius</strong> — change <span class="mono">radius/md</span> and <span class="mono">radius/lg</span> for sharper or rounder brands</li>
+        <li><strong>Typography</strong> — swap font family if brand has a custom typeface</li>
+        <li><strong>Neutral scale</strong> — remap neutral primitives for dark or coloured neutral palettes</li>
+        <li><strong>Shadow tokens</strong> — adjust elevation tokens for flatter or more layered aesthetics</li>
+      </ul>
+
+      <h2>7.3 Re-Theming in Figma — Step by Step</h2>
+      <ul class="chain">
+        <li><span class="step">1</span> Duplicate the Semantic Variables collection</li>
+        <li><span class="step">2</span> Create a new Mode named after your brand</li>
+        <li><span class="step">3</span> Remap the six primary color tokens in the new mode</li>
+        <li><span class="step">4</span> Select all frames on your artboards</li>
+        <li><span class="step">5</span> Switch the Semantic collection mode to your new brand mode</li>
+        <li><span class="step">6</span> Every component updates instantly ✓</li>
+      </ul>
+    </div>
+
+    <!-- 8. Why This Matters -->
+    <div class="section">
+      <h1>8. Why This Matters — The Design Engineer Case</h1>
+      <p>Every portfolio reviewer asks the same question: "Why should I care?" This section answers that. Not with claims, but with evidence of how Plinth was built and what it demonstrates about the person who built it.</p>
+
+      <h2>8.1 Craft</h2>
+      <p>Plinth is the result of hundreds of small correct decisions. Token naming that follows a consistent hierarchy. Layer naming by role, not by appearance — <em>Semantic</em> not <em>Colors</em>. Complete state modelling even for components that could have shipped with just three variants. Three-layer token binding that anticipates future re-theming before a single brand has been built on it.</p>
+      <p>These decisions are invisible to end users, but they are not invisible to the designers and engineers who will use the system. They feel the difference between a system built to ship features and a system built to be used by other people for years. Craft in design systems is not about pixel-perfect buttons. It is about making the right decision at every layer so that the people downstream never have to undo your work.</p>
+
+      <h2>8.2 Systems Thinking</h2>
+      <p>The Primitives → Semantic → Component architecture is systems thinking applied to design. It separates concerns, defines clear interfaces between layers, and anticipates future change without over-engineering for hypotheticals. This is the same thinking that makes good software architecture, good organisational design, and good infrastructure engineering.</p>
+      <p>Plinth demonstrates that the person who built it understands that design systems are not collections of UI components. They are systems — with inputs, outputs, dependencies, and emergent behaviours. Designing a system requires a different mindset than designing a screen. Plinth was built with that mindset from the first token to the last component.</p>
+
+      <h2>8.3 Career Relevance</h2>
+      <p>Design engineers are rare. Most designers cannot write code. Most engineers cannot design. The intersection is small, and people who operate there are valuable because they translate between two disciplines that traditionally do not speak the same language. Plinth demonstrates both sides: the Figma file shows design rigour — consistent spacing, complete variant coverage, thoughtful token naming. The token JSON file shows engineering literacy — structured data, composable architecture, clear interfaces between layers.</p>
+      <p>The documentation you are reading right now demonstrates a third skill: the ability to think about how other people will use a system. Writing documentation, naming things well, and designing for adoption are not design skills or engineering skills. They are infrastructure skills. Plinth was built by someone who has them.</p>
+
+      <div class="callout"><strong>NOTE</strong>A design system is not a product. It is infrastructure for products. Plinth was built with that distinction in mind from the first token to the last component.</div>
+    </div>
+
+    <!-- 9. Roadmap -->
+    <div class="section">
+      <h1>9. Roadmap — What Comes Next</h1>
+      <p>v1 establishes the foundation. Every decision in the current release is made with the understanding that it will be built upon. The roadmap is not speculative — it is the logical next layer of a system designed to grow.</p>
+
+      <h2>9.1 v1 — Foundation (Current)</h2>
+      <ul class="road-list">
+        <li>Three-layer token architecture (Primitives, Semantic, Component)</li>
+        <li>Light and Dark mode via Semantic collection modes</li>
+        <li>Eight core atom components — Button, Input, Badge, Card, Avatar, Checkbox, Toggle, Alert</li>
+        <li>Navbar organism</li>
+        <li>Token JSON file for code implementation</li>
+        <li>Re-theming guide and architecture documentation</li>
+      </ul>
+
+      <h2>9.2 v2 — Scale</h2>
+      <ul class="road-list">
+        <li>Motion tokens — duration, easing, delay scales</li>
+        <li>Additional organisms — data table, sidebar, modal, command palette</li>
+        <li>Form patterns — complete form layout templates</li>
+        <li>Dark mode polish — per-component dark mode review pass</li>
+        <li>Accessibility audit — WCAG AA compliance on all color combinations</li>
+        <li>Icon system — integration with a consistent icon library</li>
+      </ul>
+
+      <h2>9.3 v3 — Code Bridge</h2>
+      <ul class="road-list">
+        <li>CSS custom properties export from token JSON</li>
+        <li>Tailwind config generator from Plinth token values</li>
+        <li>React component library aligned to Figma variant API</li>
+        <li>Storybook documentation site</li>
+        <li>Multi-brand showcase — three live re-themes from the same base</li>
+      </ul>
+    </div>
+
+    <hr />
+    <p class="footer-text">Plinth Design System · Version 1.0 · Updated 2026</p>
+
+  </div>
+</body>
+</html>

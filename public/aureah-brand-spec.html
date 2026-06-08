@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aureah — Brand Specification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Open Sans',system-ui,sans-serif;
+      background:#FDF6F3;
+      color:#2D1F1A;
+      line-height:1.7;
+    }
+    .back-btn{
+      position:fixed;top:20px;left:20px;z-index:100;
+      font-family:'Open Sans',system-ui,sans-serif;
+      font-size:12px;font-weight:600;color:#5C3D35;
+      text-decoration:none;padding:6px 14px;
+      background:#FAF0EC;border:0.5px solid #E8D5CF;
+      border-radius:20px;transition:background 0.2s;
+    }
+    .back-btn:hover{background:#E8D5CF}
+    @media(max-width:600px){.back-btn{top:12px;left:12px;font-size:11px;padding:4px 12px}}
+    .container{max-width:840px;margin:0 auto;padding:64px 24px 96px}
+    h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;color:#2D1F1A}
+    h1{font-size:38px;line-height:1.1;margin-bottom:4px}
+    h2{
+      font-size:22px;line-height:1.2;margin-bottom:20px;
+      padding-bottom:10px;border-bottom:2px solid #E8D5CF;
+    }
+    .section{margin-bottom:56px}
+    .tagline{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:17px;font-style:italic;color:#5C3D35;
+      margin-bottom:32px;
+    }
+    .intro{font-size:14px;color:#5C3D35;max-width:600px}
+
+    /* Hero */
+    .hero{
+      text-align:center;padding:80px 0 56px;
+      background:linear-gradient(180deg,#FAF0EC 0%,#FDF6F3 100%);
+      border-radius:0 0 24px 24px;
+      margin:-64px -24px 56px;
+    }
+    .hero-inner{max-width:840px;margin:0 auto;padding:0 24px}
+    .hero h1{font-size:48px;font-weight:700;color:#2D1F1A}
+    .hero .tagline{font-size:20px;margin-bottom:8px}
+    .hero .badge{
+      display:inline-block;
+      background:#C97B7B;color:#FDF6F3;
+      padding:6px 18px;border-radius:24px;
+      font-size:11px;font-weight:600;letter-spacing:0.06em;
+      text-transform:uppercase;margin-top:8px;
+    }
+
+    /* Color swatches */
+    .swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+    .swatch{border-radius:8px;overflow:hidden;border:0.5px solid #E8D5CF}
+    .swatch-bar{height:64px}
+    .swatch-info{padding:8px 10px;background:#fff}
+    .swatch-name{font-size:10px;font-weight:600;color:#2D1F1A;text-transform:uppercase;letter-spacing:0.04em}
+    .swatch-hex{font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#8C7070;margin-top:2px}
+    .swatch-usage{font-size:9px;color:#8C7070;margin-top:2px;line-height:1.4}
+
+    .color-group{margin-bottom:24px}
+    .color-group h3{font-size:17px;margin-bottom:8px;color:#5C3D35}
+
+    .phase-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:8px}
+    .phase-card{border-radius:8px;padding:12px;border:0.5px solid #E8D5CF}
+    .phase-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em}
+    .phase-days{font-size:9px;opacity:0.7;margin-top:2px}
+
+    /* Typography */
+    .font-sample{margin-bottom:24px;padding:16px;background:#fff;border-radius:8px;border:0.5px solid #E8D5CF}
+    .font-sample .label{font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#8C7070;margin-bottom:4px}
+    .font-playfair{font-family:'Playfair Display',Georgia,serif}
+    .font-open-sans{font-family:'Open Sans',system-ui,sans-serif}
+    .size-display{font-size:38px;font-weight:600;line-height:1.1}
+    .size-heading{font-size:20px;font-weight:500;line-height:1.2}
+    .size-subheading{font-size:13px;font-weight:600;line-height:1.4}
+    .size-body{font-size:13px;font-weight:400;line-height:1.7}
+    .size-caption{font-size:10px;font-weight:300;line-height:1.5}
+
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    th{text-align:left;padding:8px 10px;border-bottom:2px solid #E8D5CF;color:#5C3D35;font-size:10px;text-transform:uppercase;letter-spacing:0.04em;font-weight:600}
+    td{padding:8px 10px;border-bottom:1px solid #E8D5CF;color:#2D1F1A}
+    td:first-child{font-weight:600}
+    .mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#8C7070}
+
+    /* Spacing demo */
+    .spacing-demo{display:flex;gap:4px;align-items:center;margin-bottom:16px}
+    .spacing-demo .block{background:#E8D5CF;border-radius:4px;flex-shrink:0}
+    .spacing-demo .label{font-size:10px;color:#8C7070}
+
+    /* Buttons */
+    .btn-group{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+    .btn{
+      display:inline-block;padding:10px 24px;border-radius:24px;
+      font-family:'Open Sans',system-ui,sans-serif;font-size:13px;font-weight:600;
+      text-decoration:none;cursor:default;border:none;transition:none;
+    }
+    .btn-primary{background:#C97B7B;color:#FDF6F3}
+    .btn-secondary{background:transparent;color:#5DBFA0;border:1.5px solid #5DBFA0}
+    .btn-ghost{background:transparent;color:#C97B7B;text-decoration:underline;padding:10px 8px}
+    .btn-disabled{background:#E8D5CF;color:#C8A89A}
+    .btn-danger{background:#C0392B;color:#fff}
+
+    /* Card demo */
+    .demo-card{
+      background:#fff;border:0.5px solid #E8D5CF;border-radius:10px;
+      padding:10px;margin-bottom:16px;max-width:300px;
+    }
+    .demo-card .title{font-family:'Playfair Display',serif;font-size:15px;font-weight:500;color:#2D1F1A}
+    .demo-card .sub{font-size:10px;color:#8C7070}
+
+    /* Chips */
+    .chip-group{display:flex;gap:6px;margin-bottom:16px}
+    .chip{
+      display:inline-block;padding:4px 10px;border-radius:4px;
+      font-size:10px;font-weight:600;
+    }
+    .chip-active{background:#2D1F1A;color:#fff}
+    .chip-inactive{background:transparent;color:#bbb;border:1px solid #bbb}
+
+    /* Toggle */
+    .toggle-group{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+    .toggle{width:28px;height:15px;border-radius:8px;position:relative;cursor:default}
+    .toggle-on{background:#C97B7B}
+    .toggle-off{background:#ccc}
+    .toggle-thumb{
+      width:11px;height:11px;border-radius:50%;background:#fff;
+      position:absolute;top:2px;transition:none;
+    }
+    .toggle-on .toggle-thumb{left:15px}
+    .toggle-off .toggle-thumb{left:2px}
+
+    /* Input */
+    .demo-input{
+      display:block;width:100%;max-width:300px;
+      padding:10px 12px;border:1px solid #E8D5CF;border-radius:8px;
+      font-family:'Open Sans',sans-serif;font-size:13px;color:#2D1F1A;
+      background:#fff;outline:none;
+    }
+    .demo-input:focus{border-color:#C97B7B;border-width:1.5px}
+    .demo-input.error{border-color:#C0392B;background:#FEF8F8}
+    .input-label{font-size:9px;text-transform:uppercase;color:#8C7070;letter-spacing:0.06em;margin-bottom:4px;display:block}
+
+    /* Principles */
+    .principles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+    .principle-card{
+      background:#FAF0EC;border-radius:8px;padding:16px;
+      border:0.5px solid #E8D5CF;
+    }
+    .principle-number{
+      font-family:'Playfair Display',serif;font-size:28px;font-weight:700;
+      color:#C97B7B;line-height:1;margin-bottom:8px;
+    }
+    .principle-card h3{font-size:15px;margin-bottom:4px}
+    .principle-card p{font-size:11px;color:#5C3D35;line-height:1.5}
+
+    /* Divider */
+    hr{border:none;border-top:1px solid #E8D5CF;margin:32px 0}
+
+    /* Responsive */
+    @media(max-width:600px){
+      .hero{padding:48px 0 32px;margin:-64px -16px 32px}
+      .hero h1{font-size:32px}
+      .container{padding:64px 16px 80px}
+      .swatch-grid{grid-template-columns:repeat(2,1fr)}
+      .phase-row{grid-template-columns:repeat(2,1fr)}
+      .principles-grid{grid-template-columns:1fr}
+      .btn-group{flex-direction:column}
+    }
+
+    .footer-text{text-align:center;font-size:11px;color:#B8897A;margin-top:48px}
+  </style>
+</head>
+<body>
+  <a href="/?section=projects" class="back-btn">← wander home</a>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Aureah</h1>
+      <p class="tagline">"Glow through every phase of your cycle"</p>
+      <span class="badge">Brand Specification</span>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Brand Identity -->
+    <div class="section">
+      <h2>Brand Identity</h2>
+      <table>
+        <tr><td>Name</td><td>Aureah</td></tr>
+        <tr><td>Tagline</td><td>"Glow through every phase of your cycle"</td></tr>
+        <tr><td>Tone</td><td>Calm, supportive, non-clinical. Never alarming or overly medical.</td></tr>
+        <tr><td>Mission</td><td>Supporting women's overall health by helping them understand, track, and align their lifestyle with their menstrual cycle.</td></tr>
+      </table>
+    </div>
+
+    <!-- Color Palette -->
+    <div class="section">
+      <h2>Color Palette</h2>
+
+      <div class="color-group">
+        <h3>Base Colors</h3>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch-bar" style="background:#FDF6F3"></div><div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">#FDF6F3</div><div class="swatch-usage">Page background</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#FAF0EC"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FAF0EC</div><div class="swatch-usage">Card surfaces, sections</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#E8D5CF"></div><div class="swatch-info"><div class="swatch-name">Border</div><div class="swatch-hex">#E8D5CF</div><div class="swatch-usage">Card borders, dividers</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#2D1F1A"></div><div class="swatch-info"><div class="swatch-name">Primary text</div><div class="swatch-hex">#2D1F1A</div><div class="swatch-usage" style="color:#2D1F1A">Headlines, body text</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#5C3D35"></div><div class="swatch-info"><div class="swatch-name">Secondary text</div><div class="swatch-hex">#5C3D35</div><div class="swatch-usage" style="color:#5C3D35">Subheadings, labels</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#8C7070"></div><div class="swatch-info"><div class="swatch-name">Muted text</div><div class="swatch-hex">#8C7070</div><div class="swatch-usage" style="color:#8C7070">Captions, hints</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#B8897A"></div><div class="swatch-info"><div class="swatch-name">Hint text</div><div class="swatch-hex">#B8897A</div><div class="swatch-usage" style="color:#B8897A">Uppercase labels, metadata</div></div></div>
+        </div>
+      </div>
+
+      <div class="color-group">
+        <h3>Brand Accents</h3>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch-bar" style="background:#C97B7B"></div><div class="swatch-info"><div class="swatch-name">Rose primary</div><div class="swatch-hex">#C97B7B</div><div class="swatch-usage">Primary CTAs, active states</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#E8B4A8"></div><div class="swatch-info"><div class="swatch-name">Rose light</div><div class="swatch-hex">#E8B4A8</div><div class="swatch-usage">Light backgrounds, hover states</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#5DBFA0"></div><div class="swatch-info"><div class="swatch-name">Teal secondary</div><div class="swatch-hex">#5DBFA0</div><div class="swatch-usage">Secondary CTAs, outlines</div></div></div>
+          <div class="swatch"><div class="swatch-bar" style="background:#C0392B"></div><div class="swatch-info"><div class="swatch-name">Danger</div><div class="swatch-hex">#C0392B</div><div class="swatch-usage" style="color:#C0392B">Destructive actions only</div></div></div>
+        </div>
+      </div>
+
+      <div class="color-group">
+        <h3>Phase Accent Colors</h3>
+        <div class="phase-row">
+          <div class="phase-card" style="background:#FAE0E4;border-color:#D4899A">
+            <div class="phase-name" style="color:#8C2040">Menstrual</div>
+            <div class="phase-days" style="color:#8C2040">Days 1–5</div>
+            <div style="display:flex;gap:4px;margin-top:6px">
+              <span style="display:inline-block;width:16px;height:16px;border-radius:4px;background:#D4899A"></span>
+              <span class="mono">#D4899A</span>
+            </div>
+          </div>
+          <div class="phase-card" style="background:#E4F5EE;border-color:#A8C5A0">
+            <div class="phase-name" style="color:#0F5C40">Follicular</div>
+            <div class="phase-days" style="color:#0F5C40">Days 6–13</div>
+            <div style="display:flex;gap:4px;margin-top:6px">
+              <span style="display:inline-block;width:16px;height:16px;border-radius:4px;background:#A8C5A0"></span>
+              <span class="mono">#A8C5A0</span>
+            </div>
+          </div>
+          <div class="phase-card" style="background:#FEF8E8;border-color:#F0C87A">
+            <div class="phase-name" style="color:#7A5010">Ovulation</div>
+            <div class="phase-days" style="color:#7A5010">Days 14–16</div>
+            <div style="display:flex;gap:4px;margin-top:6px">
+              <span style="display:inline-block;width:16px;height:16px;border-radius:4px;background:#F0C87A"></span>
+              <span class="mono">#F0C87A</span>
+            </div>
+          </div>
+          <div class="phase-card" style="background:#F0EDF8;border-color:#B8A9D9">
+            <div class="phase-name" style="color:#4A3870">Luteal</div>
+            <div class="phase-days" style="color:#4A3870">Days 17–28</div>
+            <div style="display:flex;gap:4px;margin-top:6px">
+              <span style="display:inline-block;width:16px;height:16px;border-radius:4px;background:#B8A9D9"></span>
+              <span class="mono">#B8A9D9</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="section">
+      <h2>Typography</h2>
+
+      <div class="font-sample">
+        <div class="label">Display / Headings</div>
+        <div class="font-playfair" style="font-size:15px;color:#2D1F1A">Playfair Display</div>
+        <div style="margin-top:8px">
+          <span class="font-playfair size-display">The quick brown fox</span>
+        </div>
+      </div>
+
+      <div class="font-sample">
+        <div class="label">Body / UI</div>
+        <div class="font-open-sans" style="font-size:15px;color:#2D1F1A">Open Sans</div>
+        <div style="margin-top:8px">
+          <span class="font-open-sans size-body">The quick brown fox jumps over the lazy dog.</span>
+        </div>
+      </div>
+
+      <div class="font-sample">
+        <div class="label">Data / Monospace</div>
+        <div class="mono" style="font-size:15px;color:#2D1F1A">SF Mono, ui-monospace, Menlo</div>
+        <div style="margin-top:8px">
+          <span class="mono" style="font-size:13px">The quick brown fox jumps over the lazy dog.</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px;margin-bottom:12px">Type Scale</h3>
+      <table>
+        <tr><th>Level</th><th>Font</th><th>Size</th><th>Weight</th><th>Line Height</th></tr>
+        <tr><td>Display</td><td>Playfair Display</td><td>38px</td><td>600</td><td>1.1</td></tr>
+        <tr><td>Heading</td><td>Playfair Display</td><td>17–22px</td><td>500</td><td>1.2</td></tr>
+        <tr><td>Subheading</td><td>Open Sans</td><td>13px</td><td>600</td><td>1.4</td></tr>
+        <tr><td>Body</td><td>Open Sans</td><td>11–14px</td><td>400</td><td>1.7</td></tr>
+        <tr><td>Caption</td><td>Open Sans</td><td>10px</td><td>300</td><td>1.5</td></tr>
+      </table>
+
+      <div style="margin-top:24px">
+        <div class="font-playfair size-display" style="margin-bottom:8px">Display — 38px</div>
+        <div class="font-playfair size-heading" style="margin-bottom:8px">Heading — 17–22px</div>
+        <div class="font-open-sans size-subheading" style="margin-bottom:6px">Subheading — 13px</div>
+        <div class="font-open-sans size-body" style="margin-bottom:6px">Body — 11–14px. The quick brown fox jumps over the lazy dog. Warm tones, generous whitespace, never crowded.</div>
+        <div class="font-open-sans size-caption" style="color:#8C7070">Caption — 10px. Supporting text, hints, metadata.</div>
+      </div>
+    </div>
+
+    <!-- Spacing -->
+    <div class="section">
+      <h2>Spacing (8pt Grid)</h2>
+      <p style="font-size:13px;color:#5C3D35;margin-bottom:16px">All spacing follows an 8-point grid system.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px">
+        <div><div style="width:4px;height:16px;background:#E8D5CF;border-radius:2px;margin-bottom:4px"></div><span class="mono">4px</span></div>
+        <div><div style="width:8px;height:16px;background:#E8D5CF;border-radius:2px;margin-bottom:4px"></div><span class="mono">8px</span></div>
+        <div><div style="width:12px;height:16px;background:#E8D5CF;border-radius:2px;margin-bottom:4px"></div><span class="mono">12px</span></div>
+        <div><div style="width:16px;height:16px;background:#E8D5CF;border-radius:2px;margin-bottom:4px"></div><span class="mono">16px</span></div>
+        <div><div style="width:24px;height:16px;background:#E8D5CF;border-radius:2px;margin-bottom:4px"></div><span class="mono">24px</span></div>
+        <div><div style="width:32px;height:16px;background:#E8D5CF;border-radius:2px;margin-bottom:4px"></div><span class="mono">32px</span></div>
+        <div><div style="width:48px;height:16px;background:#E8D5CF;border-radius:2px;margin-bottom:4px"></div><span class="mono">48px</span></div>
+        <div><div style="width:64px;height:16px;background:#E8D5CF;border-radius:2px;margin-bottom:4px"></div><span class="mono">64px</span></div>
+      </div>
+    </div>
+
+    <!-- Border Radius -->
+    <div class="section">
+      <h2>Border Radius</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px">
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#E8D5CF;border-radius:4px;margin:0 auto 6px"></div>
+          <span class="mono">4px</span>
+          <div style="font-size:9px;color:#8C7070">chips, small elements</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#E8D5CF;border-radius:8px;margin:0 auto 6px"></div>
+          <span class="mono">8px</span>
+          <div style="font-size:9px;color:#8C7070">cards, inputs</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#E8D5CF;border-radius:12px;margin:0 auto 6px"></div>
+          <span class="mono">12px</span>
+          <div style="font-size:9px;color:#8C7070">modals, panels</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#C97B7B;border-radius:24px;margin:0 auto 6px"></div>
+          <span class="mono">20–24px</span>
+          <div style="font-size:9px;color:#8C7070">buttons, pills</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#E8D5CF;border-radius:50%;margin:0 auto 6px"></div>
+          <span class="mono">50%</span>
+          <div style="font-size:9px;color:#8C7070">avatars, circles</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Components -->
+    <div class="section">
+      <h2>Components</h2>
+
+      <h3>Buttons</h3>
+      <div class="btn-group">
+        <span class="btn btn-primary">Primary</span>
+        <span class="btn btn-secondary">Secondary</span>
+        <span class="btn btn-ghost">Ghost</span>
+        <span class="btn btn-disabled">Disabled</span>
+        <span class="btn btn-danger">Danger</span>
+      </div>
+
+      <h3>Cards</h3>
+      <div class="demo-card">
+        <div class="title">Card Title</div>
+        <div class="sub">Supporting text or metadata</div>
+      </div>
+
+      <h3>Chips</h3>
+      <div class="chip-group">
+        <span class="chip chip-active">Active</span>
+        <span class="chip chip-inactive">Inactive</span>
+        <span class="chip chip-inactive">Draft</span>
+      </div>
+
+      <h3>Toggles</h3>
+      <div class="toggle-group">
+        <div class="toggle toggle-on"><div class="toggle-thumb"></div></div>
+        <span style="font-size:12px;color:#5C3D35">On</span>
+        <div class="toggle toggle-off"><div class="toggle-thumb"></div></div>
+        <span style="font-size:12px;color:#5C3D35">Off</span>
+      </div>
+
+      <h3>Form Inputs</h3>
+      <label class="input-label">Label</label>
+      <input class="demo-input" type="text" placeholder="Placeholder text" value="" readonly />
+      <div style="height:8px"></div>
+      <label class="input-label" style="color:#C0392B">Label — Error</label>
+      <input class="demo-input error" type="text" value="Invalid input" readonly />
+    </div>
+
+    <!-- Design Principles -->
+    <div class="section">
+      <h2>Design Principles</h2>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-number">01</div>
+          <h3>Calm over clinical</h3>
+          <p>Warm tones, never alarming reds. The interface feels like a supportive friend, not a doctor's office.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">02</div>
+          <h3>Breathing whitespace</h3>
+          <p>Generous padding, never crowded. Every element has room to breathe — clarity through space.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">03</div>
+          <h3>Phase-aware colour</h3>
+          <p>Accent colours map to the menstrual cycle phase. The interface changes with the user's body.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">04</div>
+          <h3>Serif + sans pairing</h3>
+          <p>Playfair Display brings editorial warmth and trust. Open Sans keeps the UI clean and legible.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <p class="footer-text">Aureah Brand Specification · Updated 2026</p>
+
+  </div>
+</body>
+</html>

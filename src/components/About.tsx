@@ -99,9 +99,27 @@ const skillCategories = [
 ];
 
 const statLayout = [
-  { y: -6, rotate: -0.5, label: "Years Experience", target: 5, micro: "years (and counting)" },
-  { y: 4, rotate: 0.8, label: "Companies", target: 6, micro: "companies, all still talking to me" },
-  { y: -4, rotate: -0.3, label: "Design Systems", target: 1, micro: "design system i'm unreasonably proud of" },
+  {
+    y: -6,
+    rotate: -0.5,
+    label: "Years Experience",
+    target: 5,
+    micro: "years (and counting)",
+  },
+  {
+    y: 4,
+    rotate: 0.8,
+    label: "Companies",
+    target: 6,
+    micro: "companies, all still talking to me",
+  },
+  {
+    y: -4,
+    rotate: -0.3,
+    label: "Design Systems",
+    target: 1,
+    micro: "design system i'm unreasonably proud of",
+  },
 ];
 
 const skillTilts = [-0.8, 0.5, -0.3, 1.0, -0.6, 0.4, -0.5];
@@ -326,7 +344,7 @@ export default function About() {
         <div className="about-wavy" />
         <div className="about-frame">
           <div className="flex items-center gap-4 mb-10">
-            <span className="about-label font-mono text-[10px] tracking-[0.12em] text-accent uppercase shrink-0">
+            <span className="about-label font-bold text-[10px] tracking-[0.12em] text-accent uppercase shrink-0">
               ✦ 01 // a little more on me
             </span>
             <span className="flex-1 about-divider" />
@@ -369,13 +387,7 @@ export default function About() {
                 className="about-heading-line about-headline text-[clamp(24px,4vw,48px)] leading-[1] italic text-fg/85"
                 style={{ transform: "rotate(0.6deg)" }}
               >
-                & DESIGN SYSTEM
-              </span>
-              <span
-                className="about-heading-line about-headline text-[clamp(24px,4vw,48px)] leading-[1] italic text-fg/85"
-                style={{ transform: "rotate(-0.3deg)" }}
-              >
-                BUILDER
+                & DESIGN ENTHUSIAST
               </span>
             </div>
           </div>
@@ -419,21 +431,29 @@ export default function About() {
                 JavaScript engineer by training, designer by curiosity, and a
                 little bit of both by choice.
               </p>
-              <p data-reveal className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4">
+              <p
+                data-reveal
+                className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4"
+              >
                 I've spent the last 5 years building interfaces that feel as
                 good as they look — working across startups and product teams,
                 writing the code and occasionally rearranging the pixels too.
-                Somewhere along the way I fell in love with design systems, the
-                kind of work that lives at the intersection of logic and
-                aesthetics.
+                Somewhere along the way I fell in love with design, the kind of
+                work that lives at the intersection of logic and aesthetics.
               </p>
-              <p data-reveal className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4">
+              <p
+                data-reveal
+                className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4"
+              >
                 When I'm not pushing components around, I'm in Nairobi — hiking,
-                collecting anime, pressing flowers, and finding colour everywhere
-                I look. I think that curiosity is what makes me a better
-                engineer.
+                collecting anime, pressing flowers, and finding colour
+                everywhere I look. I think that curiosity is what makes me a
+                better engineer.
               </p>
-              <p data-reveal className="font-mono text-[10px] text-accent tracking-[0.1em] mt-2 uppercase">
+              <p
+                data-reveal
+                className="font-bold text-[11px] text-accent tracking-[0.1em] mt-2 uppercase"
+              >
                 ✧ I'm currently open to frontend and design-adjacent roles where
                 I get to do both.
               </p>
@@ -442,7 +462,7 @@ export default function About() {
 
           <CurlyLine className="my-8" />
 
-          <div className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
+          <div className="font-bold text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
             ✦ metrics
           </div>
 
@@ -450,7 +470,7 @@ export default function About() {
             {statLayout.map((s, i) => (
               <div
                 key={s.label}
-                className={`stat min-w-[180px] flex-1 max-w-[260px] text-center p-6 ${
+                className={`stat min-w-[180px] flex-1  text-center p-6 ${
                   i === 0
                     ? "bg-accent/15 border border-accent/20"
                     : "about-card"
@@ -470,10 +490,10 @@ export default function About() {
                       ? stats.companies
                       : stats.systems}
                 </span>
-                <span className="about-meta text-[9px] tracking-[0.1em] uppercase block mt-1.5">
+                <span className="about-meta text-[10px] tracking-[0.1em] uppercase block mt-1.5">
                   {s.label}
                 </span>
-                <span className="font-mono text-[10px] text-accent tracking-[0.06em] block mt-0.5">
+                <span className="font-bold text-[12px] text-accent tracking-[0.06em] block mt-0.5">
                   {s.micro}
                 </span>
               </div>
@@ -482,10 +502,10 @@ export default function About() {
 
           <div data-reveal className="ticker-container mb-8">
             <div className="ticker-track">
-              <span className="ticker-text font-mono text-[10px] text-accent tracking-[0.12em] uppercase">
+              <span className="ticker-text font-bold text-[10px] text-accent tracking-[0.12em] uppercase">
                 ✦ 5+ years of shipping ✦
               </span>
-              <span className="ticker-text font-mono text-[10px] text-accent tracking-[0.12em] uppercase">
+              <span className="ticker-text font-bold text-[10px] text-accent tracking-[0.12em] uppercase">
                 ✦ 5+ years of shipping ✦
               </span>
             </div>
@@ -493,7 +513,10 @@ export default function About() {
 
           <CurlyLine className="my-8" />
 
-          <div data-reveal className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
+          <div
+            data-reveal
+            className="font-bold text-[10px] tracking-[0.14em] text-accent uppercase mb-5"
+          >
             ✦ experience
           </div>
 
@@ -506,13 +529,13 @@ export default function About() {
                 <div className="about-dot shrink-0 mt-2" />
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                    <span className="font-mono text-[10px] text-muted tracking-[0.04em]">
+                    <span className="font-bold text-[10px] text-muted tracking-[0.04em]">
                       {exp.start}
                     </span>
                     <h3 className="about-headline text-[15px] sm:text-[17px] tracking-[-0.01em] text-fg">
                       {exp.company}
                     </h3>
-                    <span className="font-mono text-[10px] text-muted tracking-[0.02em]">
+                    <span className="font-bold text-[10px] text-muted tracking-[0.02em]">
                       — {exp.role}
                     </span>
                   </div>
@@ -523,7 +546,10 @@ export default function About() {
 
           <CurlyLine className="my-8" />
 
-          <div data-reveal className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-5">
+          <div
+            data-reveal
+            className="font-bold text-[10px] tracking-[0.14em] text-accent uppercase mb-5"
+          >
             ✦ skills
           </div>
 
@@ -557,10 +583,10 @@ export default function About() {
                       flex: "1 1 auto",
                     }}
                   >
-                    <p className="font-mono text-[10px] tracking-[0.16em] text-accent uppercase mb-2">
+                    <p className="font-bold text-[12px] tracking-[0.16em] text-accent uppercase mb-2">
                       [{cat.label}]
                     </p>
-                    <p className="font-mono text-[10px] leading-[1.8] text-fg/80">
+                    <p className="font-bold text-[11px] leading-[1.8] text-fg/80">
                       {cat.items.join(", ")}
                     </p>
                   </div>
@@ -570,7 +596,7 @@ export default function About() {
           </div>
 
           <div data-reveal className="text-center mt-12">
-            <span className="font-mono text-[10px] tracking-[0.14em] text-accent uppercase mb-4 block">
+            <span className="font-bold text-[10px] tracking-[0.14em] text-accent uppercase mb-4 block">
               ✦ resume
             </span>
             <a
