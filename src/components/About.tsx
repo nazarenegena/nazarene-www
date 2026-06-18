@@ -318,27 +318,29 @@ export default function About() {
             </svg>
             <div className="flex-1">
               <p className="about-intro about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px]">
-                JavaScript engineer by training, designer by curiosity, and a
-                little bit of both by choice.
+                Frontend and Design Engineer with 5+ years of experience
+                building scalable, accessible web applications and design
+                systems.
               </p>
               <p
                 data-reveal
                 className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4"
               >
-                I've spent the last 5 years building interfaces that feel as
-                good as they look — working across startups and product teams,
-                writing the code and occasionally rearranging the pixels too.
-                Somewhere along the way I fell in love with design, the kind of
-                work that lives at the intersection of logic and aesthetics.
+                Proficient in React, Next.js, TypeScript, Vue.js, and Svelte,
+                with expert-level Figma skills spanning wireframing, prototyping,
+                and interaction design. Proven track record owning design systems
+                end-to-end — design tokens, component libraries, documentation,
+                and translating design intent into pixel-accurate,
+                production-ready code.
               </p>
               <p
                 data-reveal
                 className="about-body text-[16px] sm:text-[17px] leading-[1.8] text-fg max-w-[700px] mt-4"
               >
-                When I'm not pushing components around, I'm in Nairobi — hiking,
-                collecting anime, pressing flowers, and finding colour
-                everywhere I look. I think that curiosity is what makes me a
-                better engineer.
+                Experienced collaborating cross-functionally with design,
+                product, and engineering teams in Agile environments, with a
+                strong foundation in accessibility standards (WCAG) and
+                user-centred design principles.
               </p>
               <p
                 data-reveal

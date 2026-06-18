@@ -40,7 +40,7 @@ export default function Footer() {
         </div>
 
         <p className="footer-item font-mono text-[10px] tracking-[0.06em] text-muted uppercase">
-          Nairobi, Kenya · Frontend Engineer
+          Nairobi, Kenya · Frontend & Design Engineer
         </p>
       </div>
     </footer>

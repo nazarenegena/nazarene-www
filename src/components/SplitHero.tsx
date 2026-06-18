@@ -269,7 +269,7 @@ export default function SplitHero() {
           <div className="badge badge-l">[at work]</div>
           <div className="name">Nazarene Wairimu</div>
           <div className="sub">
-            frontend engineer. design-obsessed developer.
+            Frontend Engineer · Design Engineer · JavaScript Engineer
           </div>
           <p className="font-mono text-md leading-[1.6] max-w-[500px] mb-4 font-medium italic">
             "I started in code, wandered into design, and never quite came back.
@@ -368,7 +368,7 @@ export default function SplitHero() {
               </div>
               <div className="badge-text">
                 <div className="badge-name">Nazarene Wanyaga</div>
-                <div className="badge-title">JavaScript Engineer</div>
+                <div className="badge-title">Frontend Engineer</div>
                 <div className="badge-location">Nairobi</div>
               </div>
               <div className="badge-divider" />
