@@ -37,11 +37,11 @@ const projects = [
     subtitle:
       "Your personal cycle and wellness companion. Track, understand, and thrive.",
     year: "2026",
-    href: "https://www.figma.com/design/ERiW9lds6vUDR6ErMrTgtp/Aureah-Designs?node-id=0-1&t=58Fnby3jSrRxXZpE-1",
-    image: "/aureah-splash-screen.png",
+    behance: "https://www.behance.net/gallery/254835657/Aureah-Cycle-Wellness-App",
+    behanceEmbed: "https://www.behance.net/embed/project/254835657?ilo0=1",
     brandSpec: "/aureah-brand-spec.html",
-    cta: "explore the wireframes →",
-    tags: ["Figma", "Wireframing", "UI Design", "Product Design"],
+    cta: "view on behance →",
+    tags: ["Figma", "UI Design", "Product Design", "Branding"],
     oneLiner: "Your cycle, your wellness",
   },
   {
@@ -139,38 +139,55 @@ export default function Projects() {
             {projects?.map((project) => {
               const cardContent = (
                 <>
-                  <div className="project-image-placeholder relative flex items-center justify-center bg-[#faf6f1] overflow-hidden">
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
+                  {project.behanceEmbed ? (
+                    <div className="behance-embed">
+                      <iframe
+                        src={project.behanceEmbed}
+                        allowFullScreen
                         loading="lazy"
-                        className="w-full h-full object-cover absolute inset-0"
+                        frameBorder="0"
+                        allow="clipboard-write"
+                        referrerPolicy="strict-origin-when-cross-origin"
                       />
-                    ) : project.href ? (
-                      <>
-                        <div className="project-arrow">↗</div>
-                        <span className="font-bold text-[10px] tracking-[0.14em] text-accent uppercase project-screenshot-text">
-                          [project screenshot]
-                        </span>
-                      </>
-                    ) : (
-                      <span className="font-bold text-[12px] tracking-[0.1em] text-accent/60 uppercase">
-                        {project.cta}
-                      </span>
-                    )}
-                    <div className="project-overlay">
-                      <p className="project-overlay-text">{project.oneLiner}</p>
-                      <div className="project-overlay-tags">
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="project-overlay-tag">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <span className="project-overlay-cta">{project.cta}</span>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="project-image-placeholder relative flex items-center justify-center bg-[#faf6f1] overflow-hidden">
+                      {project.image ? (
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover absolute inset-0"
+                        />
+                      ) : project.href ? (
+                        <>
+                          <div className="project-arrow">↗</div>
+                          <span className="font-bold text-[10px] tracking-[0.14em] text-accent uppercase project-screenshot-text">
+                            [project screenshot]
+                          </span>
+                        </>
+                      ) : (
+                        <span className="font-bold text-[12px] tracking-[0.1em] text-accent/60 uppercase">
+                          {project.cta}
+                        </span>
+                      )}
+                      <div className="project-overlay">
+                        <p className="project-overlay-text">
+                          {project.oneLiner}
+                        </p>
+                        <div className="project-overlay-tags">
+                          {project.tags.map((tag) => (
+                            <span key={tag} className="project-overlay-tag">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <span className="project-overlay-cta">
+                          {project.cta}
+                        </span>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="p-6">
                     <div className="flex items-baseline justify-between mb-2">
@@ -188,11 +205,22 @@ export default function Projects() {
                     </p>
 
                     <div className="flex flex-wrap gap-2">
-                      <span
-                        className={`about-pill inline-block text-[12px] transition-opacity ${project.href ? "group-hover:opacity-90" : "opacity-60 cursor-default"}`}
-                      >
-                        {project.cta}
-                      </span>
+                      {project.behance ? (
+                        <a
+                          href={project.behance}
+                          target="_blank"
+                          rel="noopener"
+                          className="about-pill inline-block text-[12px] group-hover:opacity-90"
+                        >
+                          {project.cta}
+                        </a>
+                      ) : (
+                        <span
+                          className={`about-pill inline-block text-[12px] transition-opacity ${project.href ? "group-hover:opacity-90" : "opacity-60 cursor-default"}`}
+                        >
+                          {project.cta}
+                        </span>
+                      )}
                       {project.brandSpec && (
                         <a
                           href={project.brandSpec}
